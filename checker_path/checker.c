@@ -17,11 +17,12 @@ void	ft_putstr(char *str)
 	write(1, str, ft_strlen(str));
 }
 
-void		parse_error(t_stack **stk_a, t_stack **stk_b)
+int 	parse_error(t_stack **stk_a, t_stack **stk_b)
 {
 	ft_stkclear(stk_a);	
 	ft_stkclear(stk_b);
 	ft_putstr("Error\n");
+	return (1);
 }
 
 int		parse_int(int *num, char *str)
@@ -34,49 +35,44 @@ int		parse_int(int *num, char *str)
 	return (0);
 }
 
+int 	get_stack(t_stack **stk, int argc, char *argv[])
+{
+	int		i;
+	int 	num;
+	
+	i = 1;
+	*stk = NULL;
+	while (i < argc)
+	{
+		if (parse_int(&num, argv[i++]))
+			ft_stkadd_back(stk, ft_stknew(num));
+		else
+			return (0);
+	}
+	return (1);
+}
+
 int		main(int argc, char *argv[])
 {
 	t_stack	**stk_a;
 	t_stack	**stk_b;
-	int 	i;
-	int 	num;
 	
 	if (argc == 1)
 		return (0);
-	i = 1;
 	stk_a = (t_stack **)malloc(sizeof(t_stack *));
 	stk_b = (t_stack **)malloc(sizeof(t_stack *));
 	if (stk_a && stk_b)
 	{
-		*stk_a = NULL;
 		*stk_b = NULL;
-		while (i < argc)
-		{
-			if (parse_int(&num, argv[i++]))
-				ft_stkadd_back(stk_a, ft_stknew(num));
-			else
-			{
-				parse_error(stk_a, stk_b);
-				return (0);
-			}	
-		}	
+		if (!get_stack(stk_a, argc, argv) && parse_error(stk_a, stk_b))
+			return (0);
 		ft_stkshow(stk_a);
+		do_sort(stk_a, stk_b);
 		if (is_stk_sorted(stk_a))
 			ft_putstr("OK\n");
 		else
 			ft_putstr("KO\n");
 	}
 	else
-		ft_putstr("allocate Error\n");
+		ft_putstr("Memory allocate error\n");
 }
-
-
-//t_list				*ft_lstnew(void *content);
-//void					ft_lstadd_front(t_list **lst, t_list *new);
-//int					ft_lstsize(t_list *lst);
-//t_list				*ft_lstlast(t_list *lst);
-//void					ft_lstadd_back(t_list **lst, t_list *new);
-//void					ft_lstdelone(t_list *lst, void (*del)(void *));
-//void					ft_lstclear(t_list **lst, void (*del)(void *));
-//void					ft_lstiter(t_list *lst, void (*f)(void *));
-//t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
