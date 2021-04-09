@@ -49,4 +49,4 @@ bonus:		$(OBJS) $(OBJS_BNS) $(HDR)
 
 
 
-.PHONY:		all clean fclean re so bonus $(NAME)
+.PHONY:		all clean fclean re so bonus
