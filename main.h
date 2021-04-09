@@ -33,6 +33,8 @@ t_stack				*ft_stklast(t_stack *stk);
 t_stack				*ft_stknew(int num);
 int					ft_stksize(t_list *stk);
 void				ft_stkshow(t_stack **stk);
+int				 	is_int(char *str);
+
 
 
 #endif

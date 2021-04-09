@@ -26,8 +26,12 @@ void		parse_error(t_stack **stk_a, t_stack **stk_b)
 
 int		parse_int(int *num, char *str)
 {
-	*num = ft_atoi(str);
-	return (1);
+	if (is_int(str))
+	{
+		*num = ft_atoi(str);
+		return (1);
+	}
+	return (0);
 }
 
 int		main(int argc, char *argv[])
@@ -51,8 +55,11 @@ int		main(int argc, char *argv[])
 			if (parse_int(&num, argv[i++]))
 				ft_stkadd_back(stk_a, ft_stknew(num));
 			else
+			{
 				parse_error(stk_a, stk_b);
-		}		
+				return (0);
+			}	
+		}	
 		ft_stkshow(stk_a);
 	}
 	else
