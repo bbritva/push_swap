@@ -30,4 +30,19 @@ int 	is_int(char *str)
 	return (1);
 }
 
-// 2147483647
+int 	is_stk_sorted(t_stack **stk)
+{
+	t_stack *tmp;
+	
+	if (stk)
+	{
+		tmp = *stk;
+		while (tmp->next)
+		{
+			if (tmp->next->num < tmp->num)
+				return (0);
+			tmp = tmp->next;
+		}
+	}
+	return (1);
+}

@@ -61,6 +61,10 @@ int		main(int argc, char *argv[])
 			}	
 		}	
 		ft_stkshow(stk_a);
+		if (is_stk_sorted(stk_a))
+			ft_putstr("OK\n");
+		else
+			ft_putstr("KO\n");
 	}
 	else
 		ft_putstr("allocate Error\n");
