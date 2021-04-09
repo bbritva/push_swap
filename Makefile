@@ -6,7 +6,7 @@ RM			=	@rm -r
 CFLAGS		=	-Wall -Wextra -Werror -g
 CHECK_PATH	=	checker_path/
 PS_PATH		=	push_swap_path/
-CHK_SRCS	=	checker.c ps_utils.c is_int.c
+CHK_SRCS	=	checker.c checker_utils.c stack_utils.c
 PS_SRCS		=	
 SRCS		=	$(addprefix $(CHECK_PATH), $(CHK_SRCS)) \
 #				$(addprefix $(PS_PATH), $(PS_SRCS))
