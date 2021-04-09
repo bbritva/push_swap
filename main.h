@@ -8,7 +8,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include "./libft/libft.h"
-# include "./gnl/get_next_line.h"
+# include "gnl_path/get_next_line.h"
 
 
 #include <stdio.h>
@@ -36,6 +36,7 @@ int					ft_stksize(t_list *stk);
 void				ft_stkshow(t_stack **stk);
 int				 	is_int(char *str);
 int 				is_stk_sorted(t_stack **stk);
+int 				do_sort(t_stack **stk_a, t_stack **stk_b);
 
 
 #endif
