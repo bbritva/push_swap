@@ -6,40 +6,11 @@
 /*   By: grvelva <grvelva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 18:59:31 by grvelva           #+#    #+#             */
-/*   Updated: 2021/03/03 19:18:05 by grvelva          ###   ########.fr       */
+/*   Updated: 2021/04/09 09:24:12 by grvelva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-void	free_map(char **map)
-{
-	int i;
-
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
-}
-
-void	params_free(t_params *params)
-{
-	if (params->sprite)
-		free(params->sprite);
-	if (params->north)
-		free(params->north);
-	if (params->south)
-		free(params->south);
-	if (params->west)
-		free(params->west);
-	if (params->east)
-		free(params->east);
-	if (params->dists)
-		free(params->dists);
-	if (params->map)
-		free_map(params->map);
-	free(params);
-}
+#include "main.h"
 
 void	ft_putstr(char *str)
 {
@@ -67,17 +38,11 @@ int		check_main_input(int argc, char *argv[])
 
 int		main(int argc, char *argv[])
 {
-	t_params	*prms;
 
-	if ((prms = (t_params *)ft_calloc(1, sizeof(t_params))))
+	if (check_main_input(argc, argv)))
 	{
-		if (check_main_input(argc, argv) && (parser(argv[1], prms)))
-		{
-			render(prms, argc);
-			params_free(prms);
-		}
+		ft_putstr("args OK");
 	}
 	else
-		ft_putstr(ALLOC_ERR_MSG);
-	ft_putstr("end of cub3d\n");
+		ft_putstr("args BAD");
 }
