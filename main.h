@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include "./libft/libft.h"
+# include "./gnl/get_next_line.h"
 
 
 #include <stdio.h>
