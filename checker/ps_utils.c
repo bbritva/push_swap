@@ -59,6 +59,20 @@ void	ft_stkiter(t_stack **stk, void (*f)(void *))
 	}
 }
 
+void	ft_stkshow(t_stack **stk)
+{
+	t_stack *tmp;
+	
+	if (!stk)
+		return ;
+	tmp = *stk;
+	while (tmp)
+	{
+		printf("%d\n", tmp->num);
+		tmp = tmp->next;
+	}
+}
+
 t_stack	*ft_stklast(t_stack *stk)
 {
 	if (stk)

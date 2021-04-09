@@ -6,7 +6,7 @@
 /*   By: grvelva <grvelva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 18:59:31 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/09 13:07:13 by grvelva          ###   ########.fr       */
+/*   Updated: 2021/04/09 13:31:10 by grvelva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int		main(int argc, char *argv[])
 	stk_b = (t_stack **)malloc(sizeof(t_stack *));
 	if (stk_a && stk_b)
 	{
+		*stk_a = NULL;
+		*stk_b = NULL;
 		while (i < argc)
 		{
 			if (parse_int(&num, argv[i++]))
@@ -51,6 +53,7 @@ int		main(int argc, char *argv[])
 			else
 				parse_error(stk_a, stk_b);
 		}		
+		ft_stkshow(stk_a);
 	}
 	else
 		ft_putstr("allocate Error\n");

@@ -9,6 +9,10 @@
 # include <string.h>
 # include "./libft/libft.h"
 
+
+#include <stdio.h>
+
+
 # define F_MISS_MSG "Error\nFile name missing\n"
 # define M_ARGS_MSG "Error\nWrong arguments\n"
 # define NREAD_MSG "Error\nCannot read file\n"
@@ -28,5 +32,7 @@ void				ft_stkiter(t_stack **stk, void (*f)(void *));
 t_stack				*ft_stklast(t_stack *stk);
 t_stack				*ft_stknew(int num);
 int					ft_stksize(t_list *stk);
+void				ft_stkshow(t_stack **stk);
+
 
 #endif
