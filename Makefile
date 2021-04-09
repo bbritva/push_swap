@@ -7,7 +7,7 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 CHECK_PATH	=	./checker/
 PS_PATH		=	./push_swap/
 SRCS		=	main.c GNL/get_next_line.c GNL/get_next_line_utils.c \
-#				$(addprefix $(CHECK_PATH), *c) \
+				$(addprefix $(CHECK_PATH), ps_utils.c) \
 #				$(addprefix $(PS_PATH), *c)
 OBJS		=	$(SRCS:.c=.o)
 LIB_DIR		=	./libft/
@@ -31,7 +31,7 @@ re:			fclean all
 $(NAME):	$(OBJS) $(HDR)
 			@make bonus -C $(LIB_DIR)
 			@mv $(LIB_DIR)$(LIBFT) $(LIBFT)
-			$(CCF) $(OBJS) -o $(NAME)
+			$(CCF) $(OBJS) $(LIBFT) -o $(NAME)
 			@echo $(NAME) compilled
 
 %.o:		%.c $(HDR)
