@@ -12,7 +12,7 @@ void 	stack_sort(t_stack **stk_a, t_stack **stk_b, char *ops_line, int i)
 		if (ft_strnstr(&ops_line[i], "ss\n", 3))
 			i += swap(stk_a) + swap(stk_b) * 0;
 		if (ft_strnstr(&ops_line[i], "pa\n", 3))
-			i += push(stk_b, stk_a);
+			i += push(stk_a, stk_b);
 		if (ft_strnstr(&ops_line[i], "pb\n", 3))
 			i += push(stk_b, stk_a);
 		if (ft_strnstr(&ops_line[i], "ra\n", 3))
@@ -61,8 +61,6 @@ int 	do_sort(t_stack **stk_a, t_stack **stk_b)
 	(void)stk_a;
 	ops_line = get_ops_line();
 	stack_sort(stk_a, stk_b, ops_line, i);
-//	ft_putstr(ops_line);
-//	ft_putstr("\n");
 	free(ops_line);
 	return (1);
 }

@@ -12,15 +12,22 @@ int 	swap(t_stack **stk)
 		tmp->next = *stk;
 		*stk = tmp;
 	}
-	ft_putstr("swap done\n");
 	return (3);	
 }
 
-int 	push(t_stack ** stk_a, t_stack **stk_b)
+int 	push(t_stack **stk_a, t_stack **stk_b)
 {
-	(void) stk_a;
-	(void) stk_b;
-	ft_putstr("push done\n");
+	t_stack *tmp;
+	
+	if (*stk_b)
+	{
+		tmp = *stk_b;
+		*stk_b = (*stk_b)->next;
+		ft_stkadd_front(stk_a, tmp);
+		ft_putstr("push done\n");
+	}
+	else
+		ft_putstr("nothing to push\n");
 	return (3);	
 }
 
