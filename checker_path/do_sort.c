@@ -9,6 +9,7 @@ char 	*get_ops_line()
 
 	i = 1;
 	ops_line = NULL;
+	i = get_next_line(0, &line);
 	while (i)
 	{
 		ops_line = gnl_strjoin(ops_line, line);
@@ -28,7 +29,9 @@ int 	do_sort(t_stack **stk_a, t_stack **stk_b)
 	(void)stk_b;
 	(void)stk_a;
 	ops_line = get_ops_line();
+	stack_sort(stk_a, stk_b, ops_line);
 	ft_putstr(ops_line);
 	ft_putstr("\n");
+	free(ops_line);
 	return (1);
 }
