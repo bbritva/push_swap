@@ -3,7 +3,15 @@
 
 int 	swap(t_stack **stk)
 {
-	(void) stk;
+	t_stack	*tmp;
+	
+	if (stk && *stk)
+	{
+		tmp = (*stk)->next;
+		(*stk)->next = tmp->next;
+		tmp->next = *stk;
+		*stk = tmp;
+	}
 	ft_putstr("swap done\n");
 	return (3);	
 }
@@ -27,7 +35,7 @@ int 	rev_rotate(t_stack **stk)
 {
 	(void) stk;
 	ft_putstr("rev_rotate done\n");
-	return (3);	
+	return (4);	
 }
 
 
