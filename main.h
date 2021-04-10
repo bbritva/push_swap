@@ -37,6 +37,9 @@ void				ft_stkshow(t_stack **stk);
 int				 	is_int(char *str);
 int 				is_stk_sorted(t_stack **stk);
 int 				do_sort(t_stack **stk_a, t_stack **stk_b);
-
+int 				swap(t_stack **stk);
+int 				push(t_stack ** stk_a, t_stack **stk_b);
+int 				rotate(t_stack **stk);
+int 				rev_rotate(t_stack **stk);
 
 #endif
