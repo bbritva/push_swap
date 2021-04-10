@@ -1,46 +1,49 @@
 NAME		=	checker
 LIBFT		=	libft.a
 CCF			=	@gcc $(CFLAGS)
-MKLIB		=	@ar rc
 RM			=	@rm -r
 CFLAGS		=	-Wall -Wextra -Werror -g
 CHECK_PATH	=	checker_path/
 PS_PATH		=	push_swap_path/
 GNL_PATH	=	gnl_path/
 CHK_SRCS	=	checker.c checker_utils.c stack_utils.c do_sort.c
-GNL_SRC		=	get_next_line.c get_next_line_utils.c
+GNL_SRCS	=	get_next_line.c get_next_line_utils.c
 PS_SRCS		=	
 SRCS		=	$(addprefix $(CHECK_PATH), $(CHK_SRCS)) \
 				$(addprefix $(GNL_PATH), $(GNL_SRCS))
 #				$(addprefix $(PS_PATH), $(PS_SRCS))
-BIN			=	objs/
-MKDIR_BIN	=	$(shell mkdir -p $(BIN))
-OBJS		=	$(addprefix $(BIN), $(CHK_SRCS:.c=.o $(PS_SRCS:.c=.o)))
+OBJS		=	$(SRCS:.c=.o)
 LIB_DIR		=	libft/
-HDR			=	main.h
+HDR			=	main.h $(GNL_PATH)/get_next_line.h
 CYAN		=	\x1B[36m
 MAGENTA		=	\x1B[35m
 GREEN		=	\033[92m
 ENDCOLOR	=	\x1B[0m
 
-all:		$(BIN) $(NAME)
-$(NAME):	$(OBJS) $(HDR) $(MKDIR_BIN)
+all:		$(NAME)
+
+
+$(NAME):	$(OBJS) $(HDR)
+			echo $(SRCS)
+			echo $(OBJS)
 			@make bonus -C $(LIB_DIR)
 			@mv $(LIB_DIR)$(LIBFT) $(LIBFT)
 			$(CCF) $(OBJS) $(LIBFT) -o $(NAME)
 			@echo "${GREEN}"$(NAME)" is compiled${ENDCOLOR}"
+
 clean:
 			@make clean -C $(LIB_DIR)
 			$(RM) $(OBJS)
-			$(RM) $(BIN)
 			@echo objs deleted
+
 fclean:		clean
 			@make fclean -C $(LIB_DIR)
 			$(RM) $(NAME)
 			@echo $(NAME) deleted
+
 re:			fclean all
 
-$(BIN)%.o:	$(CHECK_PATH)%.c $(HDR)
+%.o:		%.c $(HDR)
 			$(CCF) -c $< -o $@
 			@echo $@ compilled
 
