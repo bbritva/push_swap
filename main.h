@@ -8,7 +8,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include "./libft/libft.h"
-# include "gnl_path/get_next_line.h"
+# include "gnl_dir/get_next_line.h"
 
 
 #include <stdio.h>
