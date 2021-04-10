@@ -33,16 +33,38 @@ int 	push(t_stack **stk_a, t_stack **stk_b)
 
 int 	rotate(t_stack **stk)
 {
-	(void) stk;
-	ft_putstr("rotate done\n");
+	t_stack	*tmp;
+	
+	if (stk && *stk)
+	{
+		tmp = ft_stklast(*stk);
+		tmp->next = *stk;
+		*stk = (*stk)->next;
+		tmp->next->next = NULL;
+		ft_putstr("rotate done\n");
+	}
+	else
+		ft_putstr("nothing to rotate\n");
 	return (3);	
 }
 
 int 	rev_rotate(t_stack **stk)
 {
-	(void) stk;
-	ft_putstr("rev_rotate done\n");
-	return (4);	
+	t_stack	*tmp;
+	t_stack	*new_last;
+
+	if (stk && *stk)
+	{
+		new_last = ft_stkprevlast(*stk);
+		tmp = *stk;
+		*stk = ft_stklast(tmp);
+		(*stk)->next = tmp;
+		new_last->next = NULL;
+		ft_putstr("rev_rotate done\n");
+	}
+	else
+		ft_putstr("nothing to rev_rotate\n");
+	return (4);
 }
 
 
