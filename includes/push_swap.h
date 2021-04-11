@@ -33,7 +33,7 @@ void				ft_stkiter(t_stack **stk, void (*f)(void *));
 t_stack				*ft_stklast(t_stack *stk);
 t_stack				*ft_stkprevlast(t_stack *stk);
 t_stack				*ft_stknew(int num);
-int					ft_stksize(t_list *stk);
+int					ft_stksize(t_stack **stk);
 void				ft_stkshow(t_stack **stk);
 int				 	is_int(char *str);
 int 				is_stk_sorted(t_stack **stk);
@@ -42,5 +42,6 @@ int 				swap(t_stack **stk);
 int 				push(t_stack ** stk_a, t_stack **stk_b);
 int 				rotate(t_stack **stk);
 int 				rev_rotate(t_stack **stk);
+void			 	sort_stack(t_stack **stk_a, t_stack **stk_b);
 
 #endif

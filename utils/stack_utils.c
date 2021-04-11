@@ -132,15 +132,20 @@ t_stack	*ft_stknew(int num)
 }
 
 
-int	ft_stksize(t_list *stk)
+int		ft_stksize(t_stack **stk)
 {
-	int stksize;
+	int			stksize;
+	t_stack		*tmp;
 
 	stksize = 0;
-	while (stk)
+	if (stk && *stk)
 	{
-		stksize++;
-		stk = stk->next;
+		tmp = *stk;
+		while (tmp)
+		{
+			stksize++;
+			tmp = tmp->next;
+		}
 	}
 	return (stksize);
 }

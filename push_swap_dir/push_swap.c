@@ -56,6 +56,7 @@ int		main(int argc, char *argv[])
 {
 	t_stack	**stk_a;
 	t_stack	**stk_b;
+	char 	*ops_line;
 	
 	if (argc == 1)
 		return (0);
@@ -66,15 +67,14 @@ int		main(int argc, char *argv[])
 		*stk_b = NULL;
 		if (!get_stack(stk_a, argc, argv) && parse_error(stk_a, stk_b))
 			return (0);
-		ft_stkshow(stk_a);
 		ft_putstr("stack A:\n");
 		ft_stkshow(stk_a);
 		ft_putstr("stack B:\n");
 		ft_stkshow(stk_b);
 		if (is_stk_sorted(stk_a) && !(*stk_b))
-			ft_putstr("OK\n");
+			ft_putstr("Well done!(=\n");
 		else
-			ft_putstr("KO\n");
+			sort_stack(stk_a, stk_b);
 	}
 	else
 		ft_putstr("Memory allocate error\n");

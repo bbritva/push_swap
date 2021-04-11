@@ -21,7 +21,7 @@ SRCS_PS		=	$(addprefix $(GNL_PATH), $(GNL_SRCS)) \
 OBJS_CHK	=	$(SRCS_CHK:.c=.o)
 OBJS_PS		=	$(SRCS_PS:.c=.o)
 LIB_DIR		=	libft/
-HDR			=	main.h $(GNL_PATH)/get_next_line.h
+HDR			=	includes/push_swap.h $(GNL_PATH)/get_next_line.h
 CYAN		=	\x1B[36m
 MAGENTA		=	\x1B[35m
 GREEN		=	\033[92m
