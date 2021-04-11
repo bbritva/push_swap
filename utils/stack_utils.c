@@ -1,5 +1,5 @@
 
-#include "../main.h"
+#include "../includes/push_swap.h"
 
 void	ft_stkadd_back(t_stack **stk, t_stack *new)
 {

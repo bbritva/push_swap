@@ -1,4 +1,4 @@
-#include "../main.h"
+#include "../includes/push_swap.h"
 
 int 	is_int(char *str)
 {

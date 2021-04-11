@@ -1,5 +1,5 @@
 
-#include "../main.h"
+#include "../includes/push_swap.h"
 
 void 	stack_sort(t_stack **stk_a, t_stack **stk_b, char *ops_line, int i)
 {

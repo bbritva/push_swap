@@ -43,6 +43,7 @@ $(PS):		$(OBJS_PS) $(HDR)
 
 clean:
 			@make clean -C $(LIB_DIR)
+			$(RM) $(LIBFT)
 			$(RM) $(OBJS_CHK)
 			$(RM) $(OBJS_PS)
 			@echo objs deleted

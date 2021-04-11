@@ -1,5 +1,5 @@
 
-#include "../main.h"
+#include "../includes/push_swap.h"
 
 int 	swap(t_stack **stk)
 {
