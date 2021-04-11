@@ -16,7 +16,7 @@ int 	is_int(char *str)
 		sign = -1;
 		i++;
 	}
-	while (str[i] && num <= INT32_MAX)
+	while (str[i] && num <= 2147483647)
 	{
 		if (ft_isdigit(str[i]))
 			num = num * 10 + str[i] - '0';
@@ -25,7 +25,7 @@ int 	is_int(char *str)
 		i++;
 	}
 	num *= sign;
-	if (num > INT32_MAX || num < INT32_MIN)
+	if (num > 2147483647 || num < -2147483648)
 		return (0);
 	return (1);
 }
