@@ -73,6 +73,23 @@ void	ft_stkshow(t_stack **stk)
 	}
 }
 
+t_stack	*ft_stkmin(t_stack **stk)
+{
+	t_stack *min;
+	t_stack *tmp;
+	
+	if (!stk)
+		return ;
+	tmp = *stk;
+	min = tmp;
+	while (tmp)
+	{
+		if (tmp->num < min->num)
+			min = tmp;
+		tmp = tmp->next;
+	}
+}
+
 t_stack	*ft_stklast(t_stack *stk)
 {
 	if (stk)

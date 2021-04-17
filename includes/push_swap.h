@@ -35,6 +35,7 @@ t_stack				*ft_stkprevlast(t_stack *stk);
 t_stack				*ft_stknew(int num);
 int					ft_stksize(t_stack **stk);
 void				ft_stkshow(t_stack **stk);
+t_stack				*ft_stkmin(t_stack **stk);
 int				 	is_int(char *str);
 int 				is_stk_sorted(t_stack **stk);
 int 				do_sort(t_stack **stk_a, t_stack **stk_b);

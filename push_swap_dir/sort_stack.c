@@ -23,6 +23,53 @@ char	*three_sort(t_stack **stk_a)
 	}
 }
 
+int		get_rsteps(t_stack **stk, int num)
+{
+	int		result;
+	t_stack	*tmp;
+
+	result = 0;
+	tmp = *stk;
+	while (tmp && tmp->num != num)
+	{
+		result++;
+		tmp = tmp->next;
+	}
+	if (result > ft_stksize(stk) - result)
+		return(result - ft_stksize(stk));
+	return(result);
+}
+
+char	*four_sort(t_stack **stk_a, t_stack **stk_b)
+{
+	char	*ops_line;
+	t_stack *min;
+	int		r_steps;
+
+	ops_line = NULL;
+	min = ft_stkmin(stk_a);
+	r_steps = get_rsteps(stk_a, 0, min->num);
+	if (r_steps > 0)
+	{
+		while (r_steps--)
+		{
+			rotate(stk_a);
+			ops_line = gnl_strjoin(ops_line, "ra\n");
+		}
+	}
+	else
+	{
+		while (r_steps++)
+		{
+			rev_rotate(stk_a);
+			ops_line = gnl_strjoin(ops_line, "rra\n");
+		}
+	}
+	push (stk_a, stk_b);
+	ops_line = gnl_strjoin()
+	return (NULL);
+}
+
 char	*sort_stack(t_stack **stk_a, t_stack **stk_b)
 {
 	int 	stk_size;
@@ -33,5 +80,7 @@ char	*sort_stack(t_stack **stk_a, t_stack **stk_b)
 		return ("ra\n");
 	if (stk_size == 3)
 		return(three_sort(stk_a));
+	if (stk_size == 4)
+		return(four_sort(stk_a));
 	return("NULL");
 }
