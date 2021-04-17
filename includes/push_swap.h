@@ -42,6 +42,6 @@ int 				swap(t_stack **stk);
 int 				push(t_stack ** stk_a, t_stack **stk_b);
 int 				rotate(t_stack **stk);
 int 				rev_rotate(t_stack **stk);
-void			 	sort_stack(t_stack **stk_a, t_stack **stk_b);
+char				*sort_stack(t_stack **stk_a, t_stack **stk_b);
 
 #endif

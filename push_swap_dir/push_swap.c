@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grvelva <grvelva@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbritva <bbritva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 18:59:31 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/09 13:31:10 by grvelva          ###   ########.fr       */
+/*   Updated: 2021/04/17 15:34:25 by bbritva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		main(int argc, char *argv[])
 		if (is_stk_sorted(stk_a) && !(*stk_b))
 			ft_putstr("Well done!(=\n");
 		else
-			sort_stack(stk_a, stk_b);
+			ops_line = sort_stack(stk_a, stk_b);
 	}
 	else
 		ft_putstr("Memory allocate error\n");
