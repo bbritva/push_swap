@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grvelva <grvelva@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bbritva <bbritva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 18:59:31 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/09 13:31:10 by grvelva          ###   ########.fr       */
+/*   Updated: 2021/04/17 18:48:24 by bbritva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,21 @@ int		main(int argc, char *argv[])
 		*stk_b = NULL;
 		if (!get_stack(stk_a, argc, argv) && parse_error(stk_a, stk_b))
 			return (0);
-		ft_stkshow(stk_a);
-		do_sort(stk_a, stk_b);
-		ft_putstr("stack A:\n");
-		ft_stkshow(stk_a);
-		ft_putstr("stack B:\n");
-		ft_stkshow(stk_b);
 		if (is_stk_sorted(stk_a) && !(*stk_b))
 			ft_putstr("OK\n");
 		else
-			ft_putstr("KO\n");
+		{
+			ft_stkshow(stk_a);
+			do_sort(stk_a, stk_b);
+			ft_putstr("stack A:\n");
+			ft_stkshow(stk_a);
+			ft_putstr("stack B:\n");
+			ft_stkshow(stk_b);
+			if (is_stk_sorted(stk_a) && !(*stk_b))
+				ft_putstr("OK\n");
+			else
+				ft_putstr("KO\n");
+		}
 	}
 	else
 		ft_putstr("Memory allocate error\n");
