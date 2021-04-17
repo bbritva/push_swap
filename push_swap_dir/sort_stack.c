@@ -5,9 +5,9 @@ char	*three_sort(t_stack **stk_a)
 	if ((*stk_a)->num < (*stk_a)->next->num)				//132;231
 	{
 		if ((*stk_a)->num < (*stk_a)->next->next->num)		//132
-			return ("ra\nsa\n");
+			return ("rra\nsa\n");
 		else
-			return ("ra\n");								//231
+			return ("rra\n");								//231
 	}
 	else													//213;321;312
 	{
@@ -16,10 +16,10 @@ char	*three_sort(t_stack **stk_a)
 			if ((*stk_a)->num < (*stk_a)->next->next->num)	//213
 				return ("sa\n");
 			else
-				return ("rra\n");							//312
+				return ("ra\n");							//312
 		}
 		else												//321
-			return ("sa\nra\n");
+			return ("sa\nrra\n");
 	}
 }
 

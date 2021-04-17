@@ -11,6 +11,7 @@ int 	swap(t_stack **stk)
 		(*stk)->next = tmp->next;
 		tmp->next = *stk;
 		*stk = tmp;
+		ft_putstr("swap done\n");
 	}
 	return (3);	
 }

@@ -6,7 +6,7 @@
 /*   By: bbritva <bbritva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 18:59:31 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/17 18:12:17 by bbritva          ###   ########.fr       */
+/*   Updated: 2021/04/17 18:31:49 by bbritva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ int		main(int argc, char *argv[])
 		*stk_b = NULL;
 		if (!get_stack(stk_a, argc, argv) && parse_error(stk_a, stk_b))
 			return (0);
-		ft_putstr("stack A:\n");
-		ft_stkshow(stk_a);
-		ft_putstr("stack B:\n");
-		ft_stkshow(stk_b);
 		if (is_stk_sorted(stk_a) && !(*stk_b))
 			ft_putstr("Well done!(=\n");
 		else
