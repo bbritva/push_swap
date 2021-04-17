@@ -6,7 +6,7 @@
 /*   By: bbritva <bbritva@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 18:59:31 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/17 15:34:25 by bbritva          ###   ########.fr       */
+/*   Updated: 2021/04/17 18:12:17 by bbritva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ int		main(int argc, char *argv[])
 		if (is_stk_sorted(stk_a) && !(*stk_b))
 			ft_putstr("Well done!(=\n");
 		else
+		{
 			ops_line = sort_stack(stk_a, stk_b);
+			ft_putstr(ops_line);
+		}
 	}
 	else
 		ft_putstr("Memory allocate error\n");
