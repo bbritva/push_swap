@@ -79,7 +79,7 @@ t_stack	*ft_stkmin(t_stack **stk)
 	t_stack *tmp;
 	
 	if (!stk)
-		return ;
+		return (NULL);
 	tmp = *stk;
 	min = tmp;
 	while (tmp)
@@ -88,6 +88,7 @@ t_stack	*ft_stkmin(t_stack **stk)
 			min = tmp;
 		tmp = tmp->next;
 	}
+	return (min);
 }
 
 t_stack	*ft_stklast(t_stack *stk)
