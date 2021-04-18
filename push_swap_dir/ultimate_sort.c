@@ -1,20 +1,21 @@
 
 #include "../includes/push_swap.h"
 
-int		get_upsteps(t_stack **stk, int num)
+int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	int		result;
-	t_stack	*tmp;
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
 
 	result = 0;
-	tmp = *stk;
-	while (tmp && tmp->num != num)
+	tmp_a = *stk_a;
+	tmp_b = *stk_b;
+	while ((tmp_a && tmp_a->num != num) || (tmp_b && tmp_b->num < num))
 	{
 		result++;
-		tmp = tmp->next;
+		tmp_a = tmp_a->next;
+		tmp_b = tmp_b->next;
 	}
-	if (result > ft_stksize(stk) - result)
-		return(result - ft_stksize(stk));
 	return(result);
 }
 
@@ -38,14 +39,16 @@ int		get_prepare_position_steps(t_stack **stk, int num)
 void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
 {
 	t_stack *tmp;
-	int 	up_steps;
-	int 	prepare_position_steps;
+	int 	straight_steps;
+	int 	reverse_steps;
+	int 	diff_steps;
 
 	tmp = *stk_b;
 	while(tmp)
 	{
-		up_steps = get_upsteps(stk_b, tmp->num);
-		prepare_position_steps = get_prepare_position_steps(stk_a, tmp->num);
+		straight_steps = get_str_steps(stk_a, stk_b, tmp->num);
+		reverse_steps = get_prepare_position_steps(stk_a, tmp->num);
+		reverse_steps = get_prepare_position_steps(stk_a, tmp->num);
 		tmp = tmp->next;
 	}
 }
