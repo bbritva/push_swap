@@ -2,7 +2,8 @@
 
 char	*three_sort(t_stack **stk_a)
 {
-//	ft_stkshow(stk_a);
+	if (is_stk_sorted(stk_a))
+		return ("");
 	if ((*stk_a)->num < (*stk_a)->next->num)				//132;231
 	{
 		if ((*stk_a)->num < (*stk_a)->next->next->num)		//132
@@ -47,6 +48,8 @@ char	*four_sort(t_stack **stk_a, t_stack **stk_b)
 	t_stack *min;
 	int		r_steps;
 
+	if (is_stk_sorted(stk_a))
+		return ("");
 	ops_line = NULL;
 	min = ft_stkmin(stk_a);
 	r_steps = get_rsteps(stk_a, min->num);
@@ -67,12 +70,41 @@ char	*four_sort(t_stack **stk_a, t_stack **stk_b)
 		}
 	}
 	push (stk_b, stk_a);
-//	ft_putstr("stack A:\n");
-//	ft_stkshow(stk_a);
-//	ft_putstr("stack B:\n");
-//	ft_stkshow(stk_b);
 	ops_line = gnl_strjoin(ops_line, "pb\n");
 	ops_line = gnl_strjoin(ops_line, three_sort(stk_a));
+	push(stk_a, stk_b);
+	ops_line = gnl_strjoin(ops_line, "pa\n");
+	return (ops_line);
+}
+
+char	*five_sort(t_stack **stk_a, t_stack **stk_b)
+{
+	char	*ops_line;
+	t_stack *min;
+	int		r_steps;
+
+	ops_line = NULL;
+	min = ft_stkmin(stk_a);
+	r_steps = get_rsteps(stk_a, min->num);
+	if (r_steps > 0)
+	{
+		while (r_steps--)
+		{
+			rotate(stk_a);
+			ops_line = gnl_strjoin(ops_line, "ra\n");
+		}
+	}
+	else
+	{
+		while (r_steps++)
+		{
+			rev_rotate(stk_a);
+			ops_line = gnl_strjoin(ops_line, "rra\n");
+		}
+	}
+	push (stk_b, stk_a);
+	ops_line = gnl_strjoin(ops_line, "pb\n");
+	ops_line = gnl_strjoin(ops_line, four_sort(stk_a, stk_b));
 	push(stk_a, stk_b);
 	ops_line = gnl_strjoin(ops_line, "pa\n");
 	return (ops_line);
@@ -90,5 +122,7 @@ char	*sort_stack(t_stack **stk_a, t_stack **stk_b)
 		return(three_sort(stk_a));
 	if (stk_size == 4)
 		return(four_sort(stk_a, stk_b));
+	if (stk_size == 5)
+		return(five_sort(stk_a, stk_b));
 	return("NULL");
 }
