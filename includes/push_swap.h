@@ -44,5 +44,7 @@ int 				push(t_stack ** stk_a, t_stack **stk_b);
 int 				rotate(t_stack **stk);
 int 				rev_rotate(t_stack **stk);
 char				*sort_stack(t_stack **stk_a, t_stack **stk_b);
+char				*five_sort(t_stack **stk_a, t_stack **stk_b);
+char				*ultimate_sort(t_stack **stk_a, t_stack **stk_b);
 
 #endif

@@ -124,5 +124,5 @@ char	*sort_stack(t_stack **stk_a, t_stack **stk_b)
 		return(four_sort(stk_a, stk_b));
 	if (stk_size == 5)
 		return(five_sort(stk_a, stk_b));
-	return("NULL");
+	return(ultimate_sort(stk_a, stk_b));
 }
