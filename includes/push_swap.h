@@ -21,6 +21,8 @@
 typedef struct		s_stack
 {
 	int 			num;
+	int 			steps;
+	char 			*ops_line;
 	struct s_stack	*next;
 
 }					t_stack;
@@ -46,5 +48,7 @@ int 				rev_rotate(t_stack **stk);
 char				*sort_stack(t_stack **stk_a, t_stack **stk_b);
 char				*five_sort(t_stack **stk_a, t_stack **stk_b);
 char				*ultimate_sort(t_stack **stk_a, t_stack **stk_b);
+void				get_each_steps(t_stack **stk_a, t_stack **stk_b);
+void 				do_min_steps(t_stack **stk_a, t_stack **stk_b);
 
 #endif
