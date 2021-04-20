@@ -17,6 +17,17 @@
 # define F_MISS_MSG "Error\nFile name missing\n"
 # define M_ARGS_MSG "Error\nWrong arguments\n"
 # define NREAD_MSG "Error\nCannot read file\n"
+# define SWAP_A "sa\n"
+# define SWAP_B "sb\n"
+# define SWAP_BOTH "ss\n"
+# define PUSH_A "pa\n"
+# define PUSH_B "pb\n"
+# define ROT_A "ra\n"
+# define ROT_B "rb\n"
+# define ROT_BOTH "rr\n"
+# define RROT_A "rra\n"
+# define RROT_B "rrb\n"
+# define RROT_BOTH "rrr\n"
 
 typedef struct		s_stack
 {

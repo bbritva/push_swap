@@ -7,21 +7,21 @@ char	*three_sort(t_stack **stk_a)
 	if ((*stk_a)->num < (*stk_a)->next->num)				//132;231
 	{
 		if ((*stk_a)->num < (*stk_a)->next->next->num)		//132
-			return ("rra\nsa\n");
+			return (RROT_A SWAP_A);
 		else
-			return ("rra\n");								//231
+			return (RROT_A);								//231
 	}
 	else													//213;321;312
 	{
 		if ((*stk_a)->next->num < (*stk_a)->next->next->num)//213;312
 		{
 			if ((*stk_a)->num < (*stk_a)->next->next->num)	//213
-				return ("sa\n");
+				return (SWAP_A);
 			else
-				return ("ra\n");							//312
+				return (ROT_A);							//312
 		}
 		else												//321
-			return ("sa\nrra\n");
+			return (SWAP_A RROT_A);
 	}
 }
 
@@ -58,7 +58,7 @@ char	*four_sort(t_stack **stk_a, t_stack **stk_b)
 		while (r_steps--)
 		{
 			rotate(stk_a);
-			ops_line = gnl_strjoin(ops_line, "ra\n");
+			ops_line = gnl_strjoin(ops_line, ROT_A);
 		}
 	}
 	else
@@ -66,14 +66,14 @@ char	*four_sort(t_stack **stk_a, t_stack **stk_b)
 		while (r_steps++)
 		{
 			rev_rotate(stk_a);
-			ops_line = gnl_strjoin(ops_line, "rra\n");
+			ops_line = gnl_strjoin(ops_line, RROT_A);
 		}
 	}
 	push (stk_b, stk_a);
-	ops_line = gnl_strjoin(ops_line, "pb\n");
+	ops_line = gnl_strjoin(ops_line, PUSH_B);
 	ops_line = gnl_strjoin(ops_line, three_sort(stk_a));
 	push(stk_a, stk_b);
-	ops_line = gnl_strjoin(ops_line, "pa\n");
+	ops_line = gnl_strjoin(ops_line, PUSH_A);
 	return (ops_line);
 }
 
@@ -91,7 +91,7 @@ char	*five_sort(t_stack **stk_a, t_stack **stk_b)
 		while (r_steps--)
 		{
 			rotate(stk_a);
-			ops_line = gnl_strjoin(ops_line, "ra\n");
+			ops_line = gnl_strjoin(ops_line, ROT_A);
 		}
 	}
 	else
@@ -99,14 +99,14 @@ char	*five_sort(t_stack **stk_a, t_stack **stk_b)
 		while (r_steps++)
 		{
 			rev_rotate(stk_a);
-			ops_line = gnl_strjoin(ops_line, "rra\n");
+			ops_line = gnl_strjoin(ops_line, RROT_A);
 		}
 	}
 	push (stk_b, stk_a);
-	ops_line = gnl_strjoin(ops_line, "pb\n");
+	ops_line = gnl_strjoin(ops_line, PUSH_B);
 	ops_line = gnl_strjoin(ops_line, four_sort(stk_a, stk_b));
 	push(stk_a, stk_b);
-	ops_line = gnl_strjoin(ops_line, "pa\n");
+	ops_line = gnl_strjoin(ops_line, PUSH_A);
 	return (ops_line);
 }
 
