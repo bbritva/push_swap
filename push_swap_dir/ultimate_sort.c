@@ -129,7 +129,7 @@ char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
 	while(*stk_b)
 	{
 		get_each_steps(stk_a, stk_b);
-		do_min_steps(stk_a, stk_b);
+//		do_min_steps(stk_a, stk_b);
 	}
 	return (ops_line);
 }

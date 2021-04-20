@@ -26,7 +26,8 @@ int 	push(t_stack **stk_a, t_stack **stk_b)
 	{
 		tmp = *stk_b;
 		*stk_b = (*stk_b)->next;
-		(*stk_b)->prev = NULL;
+		if (*stk_b)
+			(*stk_b)->prev = NULL;
 		tmp->next = NULL;
 		ft_stkadd_front(stk_a, tmp);
 		// ft_putstr("push done\n");

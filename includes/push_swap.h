@@ -34,7 +34,6 @@ void				ft_stkclear(t_stack **stk);
 //void				ft_stkdelone(t_stack *stk);
 //void				ft_stkiter(t_stack **stk, void (*f)(void *));
 t_stack				*ft_stklast(t_stack *stk);
-t_stack				*ft_stkprevlast(t_stack *stk);
 t_stack				*ft_stknew(int num);
 int					ft_stksize(t_stack **stk);
 void				ft_stkshow(t_stack **stk);

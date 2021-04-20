@@ -112,17 +112,6 @@ t_stack	*ft_stklast(t_stack *stk)
 	return (NULL);
 }
 
-t_stack	*ft_stkprevlast(t_stack *stk)
-{
-	if (stk)
-	{
-		while (stk->next && stk->next->next)
-			stk = stk->next;
-		return (stk);
-	}
-	return (NULL);
-}
-
 t_stack	*ft_stknew(int num)
 {
 	t_stack *new_el;
