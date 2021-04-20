@@ -69,7 +69,7 @@ char	*four_sort(t_stack **stk_a, t_stack **stk_b)
 			ops_line = gnl_strjoin(ops_line, RROT_A);
 		}
 	}
-	push (stk_b, stk_a);
+	push(stk_b, stk_a);
 	ops_line = gnl_strjoin(ops_line, PUSH_B);
 	ops_line = gnl_strjoin(ops_line, three_sort(stk_a));
 	push(stk_a, stk_b);

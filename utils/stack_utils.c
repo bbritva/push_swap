@@ -78,7 +78,7 @@ void	ft_stkshow(t_stack **stk)
 	tmp = *stk;
 	while (tmp)
 	{
-		printf("%d\n", tmp->num);
+		printf("%5d, %d\n", tmp->num, tmp->steps);
 		tmp = tmp->next;
 	}
 }
@@ -120,6 +120,8 @@ t_stack	*ft_stknew(int num)
 	if (new_el)
 	{
 		new_el->num = num;
+		new_el->steps = 0;
+		new_el->ops_line = NULL;
 		new_el->next = NULL;
 		new_el->prev = NULL;
 		return (new_el);
