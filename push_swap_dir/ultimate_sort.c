@@ -131,16 +131,17 @@ char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
 
 	if (is_stk_sorted(stk_a))
 		return ("");
+	ops_line = NULL;
 	while (ft_stksize(stk_a) > 5)
 	{
 		push(stk_b, stk_a);
 		ops_line = gnl_strjoin(ops_line, PUSH_A);
 	}
 	ops_line = five_sort(stk_a, stk_b);
-	while(*stk_b)
-	{
+//	while(*stk_b)
+//	{
 		get_each_steps(stk_a, stk_b);
 //		do_min_steps(stk_a, stk_b);
-	}
+//	}
 	return (ops_line);
 }
