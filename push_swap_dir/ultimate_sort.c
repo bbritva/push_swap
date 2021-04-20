@@ -1,10 +1,11 @@
 
 #include "../includes/push_swap.h"
 
-int		check_pos(int prev, t_stack *curr, int num)
+int		check_pos(t_stack *curr, int num)
 {
-	if (num > prev && num < curr->num)
-		return (1);
+	if ((curr->prev && (num > curr->prev->num && num < curr->num)) ||
+		(num > ft_stklast(curr)->num && num < curr->num))
+			return (1);
 	return (0);
 }
 
@@ -13,25 +14,21 @@ int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	int		result;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
-	int		prev_num;
 
 	result = 0;
-	prev_num = ft_stklast(*stk_a)->num;
 	tmp_a = *stk_a;
 	tmp_b = *stk_b;
-	while ((tmp_b && tmp_b->num != num) && (!check_pos(prev_num, tmp_a, num)))
+	while ((tmp_b && tmp_b->num != num) && (tmp_a && !check_pos(tmp_a, num)))
 	{
 		result++;
-		prev_num = tmp_a->num;
 		tmp_a = tmp_a->next;
 		tmp_b = tmp_b->next;
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (!check_pos(prev_num, tmp_a, num))
+		while (tmp_a && !check_pos(tmp_a, num))
 		{
 			result++;
-			prev_num = tmp_a->num;
 			tmp_a = tmp_a->next;
 		}
 	}
@@ -51,26 +48,22 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	int		result;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
-	int		prev_num;
 
-	result = 0;
-	prev_num = ft_stklast(*stk_a)->num;
-	tmp_a = *stk_a;
-	tmp_b = *stk_b;
-	while ((tmp_b && tmp_b->num != num) && (!check_pos(prev_num, tmp_a, num)))
+	result = 1;
+	tmp_a = ft_stklast(*stk_a);
+	tmp_b = ft_stklast(*stk_b);
+	while ((tmp_b && tmp_b->num != num) && (tmp_a && !check_pos(tmp_a, num)))
 	{
 		result++;
-		prev_num = tmp_a->num;
-		tmp_a = tmp_a->next;
-		tmp_b = tmp_b->next;
+		tmp_a = tmp_a->prev;
+		tmp_b = tmp_b->prev;
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (!check_pos(prev_num, tmp_a, num))
+		while (tmp_a && !check_pos(tmp_a, num))
 		{
 			result++;
-			prev_num = tmp_a->num;
-			tmp_a = tmp_a->next;
+			tmp_a = tmp_a->prev;
 		}
 	}
 	else
@@ -84,21 +77,32 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	return(result);
 }
 
-int		get_diff_steps(t_stack **stk, int num)
+int		get_diff_steps(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	int		result;
-	t_stack	*tmp;
+	int		steps;
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
 
 	result = 0;
-	tmp = *stk;
-	while (tmp && tmp->num < num)
+	steps = 0;
+	tmp_b = *stk_b;
+	while (tmp_b && tmp_b->num != num)
+	{
+		steps++;
+		tmp_b = tmp_b->next;
+	}
+	steps = (steps > (ft_stksize(stk_b) - steps)) * (ft_stksize(stk_b) - 
+			steps) + (steps <= (ft_stksize(stk_b) - steps)) * steps;
+	tmp_a = *stk_a;
+	while (tmp_a && !check_pos(tmp_a, num))
 	{
 		result++;
-		tmp = tmp->next;
+		tmp_a = tmp_a->prev;
 	}
-	if (result > ft_stksize(stk) - result)
-		return(result - ft_stksize(stk));
-	return(result);
+	result = (result > (ft_stksize(stk_a) - result)) * (ft_stksize(stk_a) -
+		result) + (result <= (ft_stksize(stk_a) - result)) * result;
+	return(steps + result);
 }
 
 void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
@@ -113,7 +117,11 @@ void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
 	{
 		straight_steps = get_str_steps(stk_a, stk_b, tmp->num);
 		reverse_steps = get_rev_steps(stk_a, stk_b, tmp->num);
-		diff_steps = get_diff_steps(stk_a, tmp->num);
+		diff_steps = get_diff_steps(stk_a, stk_b, tmp->num);
+		tmp->steps = (straight_steps > reverse_steps) * reverse_steps + 
+				(straight_steps <= reverse_steps) * straight_steps;
+		tmp->steps = (tmp->steps > diff_steps) * diff_steps + 
+				(tmp->steps <= diff_steps) * tmp->steps;
 		tmp = tmp->next;
 	}
 }
