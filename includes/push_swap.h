@@ -23,6 +23,7 @@ typedef struct		s_stack
 	int 			num;
 	int 			steps;
 	char 			*ops_line;
+	struct s_stack	*prev;
 	struct s_stack	*next;
 
 }					t_stack;
@@ -30,8 +31,8 @@ typedef struct		s_stack
 void				ft_stkadd_back(t_stack **stk, t_stack *new);
 void				ft_stkadd_front(t_stack **stk, t_stack *new);
 void				ft_stkclear(t_stack **stk);
-void				ft_stkdelone(t_stack *stk);
-void				ft_stkiter(t_stack **stk, void (*f)(void *));
+//void				ft_stkdelone(t_stack *stk);
+//void				ft_stkiter(t_stack **stk, void (*f)(void *));
 t_stack				*ft_stklast(t_stack *stk);
 t_stack				*ft_stkprevlast(t_stack *stk);
 t_stack				*ft_stknew(int num);

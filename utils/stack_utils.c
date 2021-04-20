@@ -7,15 +7,25 @@ void	ft_stkadd_back(t_stack **stk, t_stack *new)
 
 	tmp = ft_stklast(*stk);
 	if (tmp)
+	{
+		new->prev = tmp;
 		tmp->next = new;
+	}
 	else
 		*stk = new;
 }
 
 void	ft_stkadd_front(t_stack **stk, t_stack *new)
 {
-	new->next = *stk;
-	*stk = new;
+	if (stk)
+	{
+		if (*stk)
+		{
+			(*stk)->prev = new;
+			new->next = *stk;
+		}
+		*stk = new;
+	}
 }
 
 void	ft_stkclear(t_stack **stk)
@@ -35,29 +45,29 @@ void	ft_stkclear(t_stack **stk)
 }
 
 
-void	ft_stkdelone(t_stack *stk)
-{
-	if (stk)
-	{
-		stk->next = NULL;
-		free(stk);
-		stk = NULL;
-	}
-}
-
-void	ft_stkiter(t_stack **stk, void (*f)(void *))
-{
-	t_stack *tmp;
-	
-	if (!stk || !f)
-		return ;
-	tmp = *stk;
-	while (tmp)
-	{
-		f(&tmp->num);
-		tmp = tmp->next;
-	}
-}
+//void	ft_stkdelone(t_stack *stk)
+//{
+//	if (stk)
+//	{
+//		stk->next = NULL;
+//		free(stk);
+//		stk = NULL;
+//	}
+//}
+//
+//void	ft_stkiter(t_stack **stk, void (*f)(void *))
+//{
+//	t_stack *tmp;
+//	
+//	if (!stk || !f)
+//		return ;
+//	tmp = *stk;
+//	while (tmp)
+//	{
+//		f(&tmp->num);
+//		tmp = tmp->next;
+//	}
+//}
 
 void	ft_stkshow(t_stack **stk)
 {
@@ -113,28 +123,6 @@ t_stack	*ft_stkprevlast(t_stack *stk)
 	return (NULL);
 }
 
-//
-//t_stack	*ft_stkmap(t_stack *stk, void *(*f)(void *), void (*del)(void *))
-//{
-//	t_stack *result;
-//	t_stack *tmp;
-//
-//	if (!f || !del)
-//		return (NULL);
-//	result = NULL;
-//	while (stk)
-//	{
-//		if (!(tmp = ft_stknew(f(stk->num))))
-//		{
-//			ft_stkclear(&tmp, del);
-//			return (NULL);
-//		}
-//		ft_lstadd_back(&result, tmp);
-//		stk = stk->next;
-//	}
-//	return (result);
-//}
-
 t_stack	*ft_stknew(int num)
 {
 	t_stack *new_el;
@@ -144,6 +132,7 @@ t_stack	*ft_stknew(int num)
 	{
 		new_el->num = num;
 		new_el->next = NULL;
+		new_el->prev = NULL;
 		return (new_el);
 	}
 	return (NULL);
