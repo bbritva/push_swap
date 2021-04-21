@@ -121,7 +121,7 @@ t_stack	*ft_stknew(int num)
 	{
 		new_el->num = num;
 		new_el->steps = 0;
-		new_el->ops_line = NULL;
+		new_el->flag = 0;
 		new_el->next = NULL;
 		new_el->prev = NULL;
 		return (new_el);
