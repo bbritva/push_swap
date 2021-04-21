@@ -118,10 +118,32 @@ void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
 		straight_steps = get_str_steps(stk_a, stk_b, tmp->num);
 		reverse_steps = get_rev_steps(stk_a, stk_b, tmp->num);
 		diff_steps = get_diff_steps(stk_a, stk_b, tmp->num);
-		tmp->steps = (straight_steps > reverse_steps) * reverse_steps + 
-				(straight_steps <= reverse_steps) * straight_steps;
-		tmp->steps = (tmp->steps > diff_steps) * diff_steps + 
-				(tmp->steps <= diff_steps) * tmp->steps;
+		if (straight_steps < reverse_steps)
+		{
+			if (straight_steps < diff_steps)
+			{
+				tmp->steps = straight_steps;
+				tmp->flag = STRWAY;
+			}
+			else
+			{
+				tmp->steps = diff_steps;
+				tmp->flag = DIFWAY;
+			}
+		}
+		else
+		{
+			if (reverse_steps < diff_steps)
+			{
+				tmp->steps = reverse_steps;
+				tmp->flag = REVWAY;
+			}
+			else
+			{
+				tmp->steps = diff_steps;
+				tmp->flag = REVWAY;
+			}
+		}
 		tmp = tmp->next;
 	}
 }
@@ -143,7 +165,7 @@ char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
 		get_each_steps(stk_a, stk_b);
 	ft_stkshow(stk_a);
 	ft_stkshow(stk_b);
-//		do_min_steps(stk_a, stk_b);
+		ops_line = do_min_steps(stk_a, stk_b, ops_line);
 //	}
 	return (ops_line);
 }

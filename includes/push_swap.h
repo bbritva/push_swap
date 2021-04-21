@@ -28,12 +28,16 @@
 # define RROT_A "rra\n"
 # define RROT_B "rrb\n"
 # define RROT_BOTH "rrr\n"
+# define STRWAY 1 << 0
+# define REVWAY 1 << 1
+# define DIFWAY 1 << 2
+
 
 typedef struct		s_stack
 {
 	int 			num;
 	int 			steps;
-	char 			*ops_line;
+	char 			flag;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 
@@ -60,6 +64,11 @@ char				*sort_stack(t_stack **stk_a, t_stack **stk_b);
 char				*five_sort(t_stack **stk_a, t_stack **stk_b);
 char				*ultimate_sort(t_stack **stk_a, t_stack **stk_b);
 void				get_each_steps(t_stack **stk_a, t_stack **stk_b);
-void 				do_min_steps(t_stack **stk_a, t_stack **stk_b);
+char 				*do_min_steps(t_stack **stk_a, t_stack **stk_b, char *ol);
+int					check_pos(t_stack *curr, int num);
+char			 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num);
+char 				*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num);
+char			 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num);	
+
 
 #endif
