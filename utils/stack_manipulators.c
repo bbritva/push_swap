@@ -59,17 +59,25 @@ int 	rotate(t_stack **stk)
 int 	rev_rotate(t_stack **stk)
 {
 	t_stack	*tmp;
-	t_stack	*new_last;
+//	t_stack	*new_last;
 
 	if (stk && *stk)
 	{
-		new_last = ft_stklast(*stk)->prev;
-		tmp = *stk;
-		*stk = ft_stklast(tmp);
-		(*stk)->next = tmp;
+		tmp = ft_stklast(*stk);
+		tmp->next = *stk;
+		(*stk)->prev = tmp;
+		*stk = (*stk)->prev;
+		(*stk)->prev->next = NULL;
 		(*stk)->prev = NULL;
-		tmp->prev = (*stk)->next;
-		new_last->next = NULL;
+		
+		
+//		new_last = ft_stklast(*stk)->prev;
+//		tmp = *stk;
+//		*stk = ft_stklast(tmp);
+//		(*stk)->next = tmp;
+//		tmp->prev = (*stk)->next;
+//		(*stk)->prev = NULL;
+//		new_last->next = NULL;
 		// ft_putstr("rev_rotate done\n");
 	}
 	// else

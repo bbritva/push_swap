@@ -61,6 +61,8 @@ int 				push(t_stack ** stk_a, t_stack **stk_b);
 int 				rotate(t_stack **stk);
 int 				rev_rotate(t_stack **stk);
 char				*sort_stack(t_stack **stk_a, t_stack **stk_b);
+void			 	do_stack_ops(t_stack **stk_a, t_stack **stk_b,
+						char *ops_line, int i);
 char				*five_sort(t_stack **stk_a, t_stack **stk_b);
 char				*ultimate_sort(t_stack **stk_a, t_stack **stk_b);
 void				get_each_steps(t_stack **stk_a, t_stack **stk_b);
