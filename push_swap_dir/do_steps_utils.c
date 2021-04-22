@@ -4,9 +4,12 @@
 char 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	char 	*ol;
+	int 	min;
 
 	ol = NULL;
-	while ((*stk_b && (*stk_b)->num != num) && (*stk_a && !check_pos(*stk_a, num)))
+	min = ft_stkmin(stk_a)->num;
+	while ((*stk_b && (*stk_b)->num != num) && (*stk_a &&
+		!check_pos(*stk_a, num, min)))
 	{
 		ol = gnl_strjoin(ol, ROT_BOTH);
 		rotate(stk_b);
@@ -14,7 +17,7 @@ char 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 	}
 	if (*stk_b && (*stk_b)->num == num)
 	{
-		while (*stk_a && !check_pos(*stk_a, num))
+		while (*stk_a && !check_pos(*stk_a, num, min))
 		{
 			ol = gnl_strjoin(ol, ROT_A);
 			rotate(stk_a);
@@ -34,16 +37,19 @@ char 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 char 	*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	char 	*ol;
+	int 	min;
 
+	min = ft_stkmin(stk_a)->num;
 	ol = gnl_strjoin(NULL, RROT_BOTH);
-	while ((*stk_b && (*stk_b)->num != num) && (*stk_a && !check_pos(*stk_a, num)))
+	while ((*stk_b && (*stk_b)->num != num) && (*stk_a &&
+		!check_pos(*stk_a, num, min)))
 	{
 		ol = gnl_strjoin(ol, RROT_BOTH);
 		rev_rotate(stk_b);
 		rev_rotate(stk_a);
 	}
 	if (*stk_b && (*stk_b)->num == num)
-		while (*stk_a && !check_pos(*stk_a, num))
+		while (*stk_a && !check_pos(*stk_a, num, min))
 		{
 			ol = gnl_strjoin(NULL, RROT_A);
 			rev_rotate(stk_a);
@@ -61,11 +67,13 @@ char 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	char 	*ol;
 	int		steps;
+	int		min;
 	t_stack	*tmp;
 
 	ol = NULL;
 	steps = 0;
 	tmp = *stk_b;
+	min = ft_stkmin(stk_a)->num;
 	while (tmp && tmp->num != num)
 	{
 		steps++;
@@ -85,19 +93,19 @@ char 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 		}
 	tmp = *stk_a;
 	steps = 0;
-	while (tmp && !check_pos(tmp, num))
+	while (tmp && !check_pos(tmp, num, min))
 	{
 		steps++;
 		tmp = tmp->next;
 	}
 	if (steps < ft_stksize(stk_b) - steps)
-		while (*stk_a && !check_pos(*stk_a, num))
+		while (*stk_a && !check_pos(*stk_a, num, min))
 		{
 			rotate(stk_a);
 			ol = gnl_strjoin(ol, ROT_A);
 		}
 	else
-		while (*stk_a && !check_pos(*stk_a, num))
+		while (*stk_a && !check_pos(*stk_a, num, min))
 		{
 			rev_rotate(stk_a);
 			ol = gnl_strjoin(ol, RROT_A);

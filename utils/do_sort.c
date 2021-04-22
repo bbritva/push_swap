@@ -27,9 +27,9 @@ void 	do_stack_ops(t_stack **stk_a, t_stack **stk_b, char *ops_line, int i)
 			i += rev_rotate(stk_b);
 		if (ft_strnstr(&ops_line[i], "rrr\n", 4))
 			i += rev_rotate(stk_a) + rev_rotate(stk_b) * 0;
-//		ft_putstr(&ops_line[i]);
-//		ft_putstr("\n");
-//		ft_stkshow(stk_a);
+		ft_putstr(&ops_line[i]);
+		ft_putstr("\n");
+		ft_stkshow(stk_a);
 	}
 }
 

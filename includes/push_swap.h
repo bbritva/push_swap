@@ -67,7 +67,7 @@ char				*five_sort(t_stack **stk_a, t_stack **stk_b);
 char				*ultimate_sort(t_stack **stk_a, t_stack **stk_b);
 void				get_each_steps(t_stack **stk_a, t_stack **stk_b);
 char 				*do_min_steps(t_stack **stk_a, t_stack **stk_b, char *ol);
-int					check_pos(t_stack *curr, int num);
+int					check_pos(t_stack *curr, int num, int min);
 char			 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num);
 char 				*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num);
 char			 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num);

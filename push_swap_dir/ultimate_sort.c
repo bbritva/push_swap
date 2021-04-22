@@ -1,24 +1,28 @@
 
 #include "../includes/push_swap.h"
 
-int		check_pos(t_stack *curr, int num)
+int		check_pos(t_stack *curr, int num, int min)
 {
 	if ((curr->prev && (num > curr->prev->num && num < curr->num)) ||
-		(num > ft_stklast(curr)->num && num < curr->num))
-			return (1);
+		(num > ft_stklast(curr)->num && num < curr->num) ||
+		(curr->num == min && num < curr->num))
+		return (1);
 	return (0);
 }
 
 int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	int		result;
+	int		min;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
 
 	result = 0;
+	min = ft_stkmin(stk_a)->num;
 	tmp_a = *stk_a;
 	tmp_b = *stk_b;
-	while ((tmp_b && tmp_b->num != num) && (tmp_a && !check_pos(tmp_a, num)))
+	while ((tmp_b && tmp_b->num != num) && (tmp_a &&
+		!check_pos(tmp_a, num, min)))
 	{
 		result++;
 		tmp_a = tmp_a->next;
@@ -26,7 +30,7 @@ int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (tmp_a && !check_pos(tmp_a, num))
+		while (tmp_a && !check_pos(tmp_a, num, min))
 		{
 			result++;
 			tmp_a = tmp_a->next;
@@ -46,13 +50,16 @@ int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
 int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	int		result;
+	int		min;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
 
 	result = 1;
+	min = ft_stkmin(stk_a)->num;
 	tmp_a = ft_stklast(*stk_a);
 	tmp_b = ft_stklast(*stk_b);
-	while ((tmp_b && tmp_b->num != num) && (tmp_a && !check_pos(tmp_a, num)))
+	while ((tmp_b && tmp_b->num != num) && (tmp_a &&
+		!check_pos(tmp_a, num, min)))
 	{
 		result++;
 		tmp_a = tmp_a->prev;
@@ -60,7 +67,7 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (tmp_a && !check_pos(tmp_a, num))
+		while (tmp_a && !check_pos(tmp_a, num, min))
 		{
 			result++;
 			tmp_a = tmp_a->prev;
@@ -80,12 +87,14 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 int		get_diff_steps(t_stack **stk_a, t_stack **stk_b, int num)
 {
 	int		result;
+	int		min;
 	int		steps;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
 
 	result = 0;
 	steps = 0;
+	min = ft_stkmin(stk_a)->num;
 	tmp_b = *stk_b;
 	while (tmp_b && tmp_b->num != num)
 	{
@@ -95,7 +104,7 @@ int		get_diff_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	steps = (steps > (ft_stksize(stk_b) - steps)) * (ft_stksize(stk_b) - 
 			steps) + (steps <= (ft_stksize(stk_b) - steps)) * steps;
 	tmp_a = *stk_a;
-	while (tmp_a && !check_pos(tmp_a, num))
+	while (tmp_a && !check_pos(tmp_a, num, min))
 	{
 		result++;
 		tmp_a = tmp_a->prev;
@@ -169,5 +178,6 @@ char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
 		ops_line = do_min_steps(stk_a, stk_b, ops_line);
 	}
 	ops_line = gnl_strjoin(ops_line, final_rotate(stk_a));
+	ft_stkshow(stk_a);
 	return (ops_line);
 }
