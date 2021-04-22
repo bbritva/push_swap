@@ -45,6 +45,8 @@ int		get_rsteps(t_stack **stk, int num)
 char	*four_sort(t_stack **stk_a, t_stack **stk_b)
 {
 	char	*ops_line;
+	char	*three_line;
+	
 	t_stack *min;
 	int		r_steps;
 
@@ -71,7 +73,9 @@ char	*four_sort(t_stack **stk_a, t_stack **stk_b)
 	}
 	push(stk_b, stk_a);
 	ops_line = gnl_strjoin(ops_line, PUSH_B);
-	ops_line = gnl_strjoin(ops_line, three_sort(stk_a));
+	three_line = three_sort(stk_a);
+	do_stack_ops(stk_a, stk_b, three_line, 0);
+	ops_line = gnl_strjoin(ops_line, three_line);
 	push(stk_a, stk_b);
 	ops_line = gnl_strjoin(ops_line, PUSH_A);
 	return (ops_line);
