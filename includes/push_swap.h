@@ -70,7 +70,10 @@ char 				*do_min_steps(t_stack **stk_a, t_stack **stk_b, char *ol);
 int					check_pos(t_stack *curr, int num);
 char			 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num);
 char 				*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num);
-char			 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num);	
+char			 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num);
+char 				*final_rotate(t_stack **stk);
+t_stack				*ft_stkmin(t_stack **stk);
+
 
 
 #endif

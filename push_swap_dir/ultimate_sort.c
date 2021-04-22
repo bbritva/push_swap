@@ -161,18 +161,13 @@ char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
 		ops_line = gnl_strjoin(ops_line, PUSH_B);
 	}
 	five_sort_line = five_sort(stk_a, stk_b);
-//	do_stack_ops(stk_a, stk_b, five_sort_line, 0);
 	ops_line = gnl_strjoin(ops_line, five_sort_line);
 	free(five_sort_line);
 	while(*stk_b)
 	{
 		get_each_steps(stk_a, stk_b);
 		ops_line = do_min_steps(stk_a, stk_b, ops_line);
-//		ft_stkshow(stk_a);
-//		ft_stkshow(stk_b);
 	}
-	ops_line = gnl_strjoin(ops_line, RROT_A);
-
-//	do_stack_ops(stk_a, stk_b, ops_line, 0);
+	ops_line = gnl_strjoin(ops_line, final_rotate(stk_a));
 	return (ops_line);
 }
