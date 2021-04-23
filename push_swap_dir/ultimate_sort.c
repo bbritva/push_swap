@@ -107,7 +107,7 @@ int		get_diff_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	while (tmp_a && !check_pos(tmp_a, num, min))
 	{
 		result++;
-		tmp_a = tmp_a->prev;
+		tmp_a = tmp_a->next;
 	}
 	result = (result > (ft_stksize(stk_a) - result)) * (ft_stksize(stk_a) -
 		result) + (result <= (ft_stksize(stk_a) - result)) * result;
@@ -150,7 +150,7 @@ void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
 			else
 			{
 				tmp->steps = diff_steps;
-				tmp->flag = REVWAY;
+				tmp->flag = DIFWAY;
 			}
 		}
 		tmp = tmp->next;
@@ -178,6 +178,9 @@ char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
 		ops_line = do_min_steps(stk_a, stk_b, ops_line);
 	}
 	ops_line = gnl_strjoin(ops_line, final_rotate(stk_a));
+//	ft_putstr("Stack A:\n");
 //	ft_stkshow(stk_a);
+//	ft_putstr("Stack B:\n");
+//	ft_stkshow(stk_b);
 	return (ops_line);
 }
