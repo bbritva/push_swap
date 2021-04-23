@@ -54,23 +54,32 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
 
-	result = 1;
+	result = 0;
 	min = ft_stkmin(stk_a)->num;
-	tmp_a = ft_stklast(*stk_a);
-	tmp_b = ft_stklast(*stk_b);
+	tmp_a = *stk_a;
+	tmp_b = *stk_b;
 	while ((tmp_b && tmp_b->num != num) && (tmp_a &&
 		!check_pos(tmp_a, num, min)))
 	{
 		result++;
-		tmp_a = tmp_a->prev;
-		tmp_b = tmp_b->prev;
+		if (tmp_a->prev)
+			tmp_a = tmp_a->prev;
+		else
+			tmp_a = ft_stklast(tmp_a);
+		if (tmp_b->prev)
+			tmp_b = tmp_b->prev;
+		else
+			tmp_b = ft_stklast(tmp_b);
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
 		while (tmp_a && !check_pos(tmp_a, num, min))
 		{
 			result++;
-			tmp_a = tmp_a->prev;
+			if (tmp_a->prev)
+				tmp_a = tmp_a->prev;
+			else
+				tmp_a = ft_stklast(tmp_a);
 		}
 	}
 	else
@@ -78,7 +87,10 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 		while (tmp_b && tmp_b->num != num)
 		{
 			result++;
-			tmp_b = tmp_b->next;
+			if (tmp_b->prev)
+				tmp_b = tmp_b->prev;
+			else
+				tmp_b = ft_stklast(tmp_b);
 		}
 	}
 	return(result);
@@ -127,9 +139,9 @@ void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
 		straight_steps = get_str_steps(stk_a, stk_b, tmp->num);
 		reverse_steps = get_rev_steps(stk_a, stk_b, tmp->num);
 		diff_steps = get_diff_steps(stk_a, stk_b, tmp->num);
-		if (straight_steps < reverse_steps)
+		if (straight_steps <= reverse_steps)
 		{
-			if (straight_steps < diff_steps)
+			if (straight_steps <= diff_steps)
 			{
 				tmp->steps = straight_steps;
 				tmp->flag = STRWAY;
@@ -142,7 +154,7 @@ void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
 		}
 		else
 		{
-			if (reverse_steps < diff_steps)
+			if (reverse_steps <= diff_steps)
 			{
 				tmp->steps = reverse_steps;
 				tmp->flag = REVWAY;

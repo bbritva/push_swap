@@ -42,7 +42,7 @@ char 	*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 	int 	min;
 
 	min = ft_stkmin(stk_a)->num;
-	ol = gnl_strjoin(NULL, RROT_BOTH);
+	ol = NULL;
 	while ((*stk_b && (*stk_b)->num != num) && (*stk_a &&
 		!check_pos(*stk_a, num, min)))
 	{
@@ -53,13 +53,13 @@ char 	*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 	if (*stk_b && (*stk_b)->num == num)
 		while (*stk_a && !check_pos(*stk_a, num, min))
 		{
-			ol = gnl_strjoin(NULL, RROT_A);
+			ol = gnl_strjoin(ol, RROT_A);
 			rev_rotate(stk_a);
 		}
 	else
 		while (*stk_b && (*stk_b)->num != num)
 		{
-			ol = gnl_strjoin(NULL, RROT_B);
+			ol = gnl_strjoin(ol, RROT_B);
 			rev_rotate(stk_b);
 		}
 	if (ol)
