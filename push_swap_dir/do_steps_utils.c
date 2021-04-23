@@ -31,7 +31,9 @@ char 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 			rotate(stk_b);
 		}
 	}
-	return(ol);
+	if (ol)
+		return(ol);
+	return ("");
 }
 
 char 	*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num)
@@ -60,8 +62,9 @@ char 	*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 			ol = gnl_strjoin(NULL, RROT_B);
 			rev_rotate(stk_b);
 		}
-	return(ol);
-}
+	if (ol)
+		return(ol);
+	return ("");}
 
 char 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 {
