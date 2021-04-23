@@ -14,7 +14,10 @@
 
 void	ft_putstr(char *str)
 {
-	write(1, str, ft_strlen(str));
+	if (str)
+		write(1, str, ft_strlen(str));
+	else
+		ft_putstr("NULL, wtf?\n");
 }
 
 int 	parse_error(t_stack **stk_a, t_stack **stk_b)

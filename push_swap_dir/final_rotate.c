@@ -33,5 +33,7 @@ char 	*final_rotate(t_stack **stk)
 			ops_line = gnl_strjoin(ops_line, RROT_A);
 		}
 	}
-	return (ops_line);
+	if (ops_line)
+		return (ops_line);
+	return ("");
 }

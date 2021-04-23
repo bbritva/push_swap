@@ -110,5 +110,7 @@ char 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num)
 			rev_rotate(stk_a);
 			ol = gnl_strjoin(ol, RROT_A);
 		}
-	return(ol);
+	if (ol)
+		return(ol);
+	return ("");
 }

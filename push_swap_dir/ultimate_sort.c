@@ -178,6 +178,6 @@ char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
 		ops_line = do_min_steps(stk_a, stk_b, ops_line);
 	}
 	ops_line = gnl_strjoin(ops_line, final_rotate(stk_a));
-	ft_stkshow(stk_a);
+//	ft_stkshow(stk_a);
 	return (ops_line);
 }
