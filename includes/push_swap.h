@@ -76,7 +76,7 @@ char				*five_sort(t_all *all);
 char				*ultimate_sort(t_all *all);
 void				get_each_steps(t_all *all);
 char 				*do_min_steps(t_all *all, char *ol);
-int					check_pos(t_stack *curr, int num, int min);
+int					check_pos(t_stack *curr, int num, int min, int max);
 char			 	*str_prepare(t_all *all, int num);
 char 				*rev_prepare(t_all *all, int num);
 char			 	*dif_prepare(t_all *all, int num);

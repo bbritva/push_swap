@@ -7,7 +7,7 @@ char 	*str_prepare(t_all *all, int num)
 
 	ol = NULL;
 	while ((*all->stk_b && (*all->stk_b)->num != num) &&
-		(*all->stk_a && !check_pos(*all->stk_a, num, all->min)))
+		(*all->stk_a && !check_pos(*all->stk_a, num, all->min, all->max)))
 	{
 		ol = gnl_strjoin(ol, ROT_BOTH);
 		rotate(all->stk_b);
@@ -15,7 +15,7 @@ char 	*str_prepare(t_all *all, int num)
 	}
 	if (*all->stk_b && (*all->stk_b)->num == num)
 	{
-		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min))
+		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min, all->max))
 		{
 			ol = gnl_strjoin(ol, ROT_A);
 			rotate(all->stk_a);
@@ -40,14 +40,14 @@ char 	*rev_prepare(t_all *all, int num)
 
 	ol = NULL;
 	while ((*all->stk_b && (*all->stk_b)->num != num) &&
-		(*all->stk_a && !check_pos(*all->stk_a, num, all->min)))
+		(*all->stk_a && !check_pos(*all->stk_a, num, all->min, all->max)))
 	{
 		ol = gnl_strjoin(ol, RROT_BOTH);
 		rev_rotate(all->stk_b);
 		rev_rotate(all->stk_a);
 	}
 	if (*all->stk_b && (*all->stk_b)->num == num)
-		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min))
+		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min, all->max))
 		{
 			ol = gnl_strjoin(ol, RROT_A);
 			rev_rotate(all->stk_a);
@@ -90,19 +90,19 @@ char 	*dif_prepare(t_all *all, int num)
 		}
 	tmp = *all->stk_a;
 	steps = 0;
-	while (tmp && !check_pos(tmp, num, all->min))
+	while (tmp && !check_pos(tmp, num, all->min, all->max))
 	{
 		steps++;
 		tmp = tmp->next;
 	}
 	if (steps < ft_stksize(all->stk_a) - steps)
-		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min))
+		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min, all->max))
 		{
 			rotate(all->stk_a);
 			ol = gnl_strjoin(ol, ROT_A);
 		}
 	else
-		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min))
+		while (*all->stk_a && !check_pos(*all->stk_a, num, all->min, all->max))
 		{
 			rev_rotate(all->stk_a);
 			ol = gnl_strjoin(ol, RROT_A);

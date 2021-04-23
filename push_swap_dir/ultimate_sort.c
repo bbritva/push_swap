@@ -1,11 +1,12 @@
 
 #include "../includes/push_swap.h"
 
-int		check_pos(t_stack *curr, int num, int min)
+int		check_pos(t_stack *curr, int num, int min, int max)
 {
 	if ((curr->prev && (num > curr->prev->num && num < curr->num)) ||
 		(num > ft_stklast(curr)->num && num < curr->num) ||
-		(curr->num == min && num < curr->num))
+		(curr->num == min && num < curr->num) ||
+		(curr->num == min && num > max))
 		return (1);
 	return (0);
 }
@@ -20,7 +21,7 @@ int		get_str_steps(t_all *all, int num)
 	tmp_a = *(all->stk_a);
 	tmp_b = *(all->stk_b);
 	while ((tmp_b && tmp_b->num != num) && (tmp_a &&
-		!check_pos(tmp_a, num, all->min)))
+		!check_pos(tmp_a, num, all->min, all->max)))
 	{
 		result++;
 		tmp_a = tmp_a->next;
@@ -28,7 +29,7 @@ int		get_str_steps(t_all *all, int num)
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (tmp_a && !check_pos(tmp_a, num, all->min))
+		while (tmp_a && !check_pos(tmp_a, num, all->min, all->max))
 		{
 			result++;
 			tmp_a = tmp_a->next;
@@ -55,7 +56,7 @@ int		get_rev_steps(t_all *all, int num)
 	tmp_a = *(all->stk_a);
 	tmp_b = *(all->stk_b);
 	while ((tmp_b && tmp_b->num != num) && (tmp_a &&
-		!check_pos(tmp_a, num,  all->min)))
+		!check_pos(tmp_a, num,  all->min, all->max)))
 	{
 		result++;
 		if (tmp_a->prev)
@@ -69,7 +70,7 @@ int		get_rev_steps(t_all *all, int num)
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (tmp_a && !check_pos(tmp_a, num,  all->min))
+		while (tmp_a && !check_pos(tmp_a, num, all->min, all->max))
 		{
 			result++;
 			if (tmp_a->prev)
@@ -110,7 +111,7 @@ int		get_diff_steps(t_all *all, int num)
 	steps = (steps > (ft_stksize(all->stk_b) - steps)) * (ft_stksize(all->stk_b) - 
 			steps) + (steps <= (ft_stksize(all->stk_b) - steps)) * steps;
 	tmp_a = *(all->stk_a);
-	while (tmp_a && !check_pos(tmp_a, num, all->min))
+	while (tmp_a && !check_pos(tmp_a, num, all->min, all->max))
 	{
 		result++;
 		tmp_a = tmp_a->next;
