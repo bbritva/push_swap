@@ -20,10 +20,11 @@ void	ft_putstr(char *str)
 		ft_putstr("NULL, wtf?\n");
 }
 
-int 	parse_error(t_stack **stk_a, t_stack **stk_b)
+int 	parse_error(t_all *all)
 {
-	ft_stkclear(stk_a);	
-	ft_stkclear(stk_b);
+	ft_stkclear(all->stk_a);	
+	ft_stkclear(all->stk_b);
+	free(all);
 	ft_putstr("Error\n");
 	return (1);
 }
@@ -59,22 +60,26 @@ int		main(int argc, char *argv[])
 {
 	t_stack	**stk_a;
 	t_stack	**stk_b;
+	t_all	*all;
 	char 	*ops_line;
 	
 	if (argc == 1)
 		return (0);
 	stk_a = (t_stack **)malloc(sizeof(t_stack *));
 	stk_b = (t_stack **)malloc(sizeof(t_stack *));
-	if (stk_a && stk_b)
+	all = (t_all *)malloc(sizeof(t_all));
+	if (stk_a && stk_b && all)
 	{
+		all->stk_a = stk_a;
+		all->stk_b = stk_b;
 		*stk_b = NULL;
-		if (!get_stack(stk_a, argc, argv) && parse_error(stk_a, stk_b))
+		if (!get_stack(stk_a, argc, argv) && parse_error(all))
 			return (0);
 		if (is_stk_sorted(stk_a) && !(*stk_b))
 			ft_putstr("Well done!(=\n");
 		else
 		{
-			ops_line = sort_stack(stk_a, stk_b);
+			ops_line = sort_stack(all);
 			ft_putstr(ops_line);
 		}
 	}

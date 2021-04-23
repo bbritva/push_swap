@@ -33,6 +33,7 @@
 # define DIFWAY 1 << 2
 
 
+
 typedef struct		s_stack
 {
 	int 			num;
@@ -42,6 +43,14 @@ typedef struct		s_stack
 	struct s_stack	*next;
 
 }					t_stack;
+
+typedef struct		s_all
+{
+	t_stack			**stk_a;
+	t_stack			**stk_b;
+	int 			min;
+	int 			max;
+}					t_all;
 
 void				ft_stkadd_back(t_stack **stk, t_stack *new);
 void				ft_stkadd_front(t_stack **stk, t_stack *new);
@@ -60,19 +69,20 @@ int 				swap(t_stack **stk);
 int 				push(t_stack ** stk_a, t_stack **stk_b);
 int 				rotate(t_stack **stk);
 int 				rev_rotate(t_stack **stk);
-char				*sort_stack(t_stack **stk_a, t_stack **stk_b);
+char				*sort_stack(t_all *all);
 void			 	do_stack_ops(t_stack **stk_a, t_stack **stk_b,
 						char *ops_line, int i);
-char				*five_sort(t_stack **stk_a, t_stack **stk_b);
-char				*ultimate_sort(t_stack **stk_a, t_stack **stk_b);
-void				get_each_steps(t_stack **stk_a, t_stack **stk_b);
-char 				*do_min_steps(t_stack **stk_a, t_stack **stk_b, char *ol);
+char				*five_sort(t_all *all);
+char				*ultimate_sort(t_all *all);
+void				get_each_steps(t_all *all);
+char 				*do_min_steps(t_all *all, char *ol);
 int					check_pos(t_stack *curr, int num, int min);
-char			 	*str_prepare(t_stack **stk_a, t_stack **stk_b, int num);
-char 				*rev_prepare(t_stack **stk_a, t_stack **stk_b, int num);
-char			 	*dif_prepare(t_stack **stk_a, t_stack **stk_b, int num);
+char			 	*str_prepare(t_all *all, int num);
+char 				*rev_prepare(t_all *all, int num);
+char			 	*dif_prepare(t_all *all, int num);
 char 				*final_rotate(t_stack **stk);
 t_stack				*ft_stkmin(t_stack **stk);
+t_stack				*ft_stkmax(t_stack **stk);
 
 
 

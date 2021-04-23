@@ -101,6 +101,24 @@ t_stack	*ft_stkmin(t_stack **stk)
 	return (min);
 }
 
+t_stack	*ft_stkmax(t_stack **stk)
+{
+	t_stack *max;
+	t_stack *tmp;
+	
+	if (!stk)
+		return (NULL);
+	tmp = *stk;
+	max = tmp;
+	while (tmp)
+	{
+		if (tmp->num > max->num)
+			max = tmp;
+		tmp = tmp->next;
+	}
+	return (max);
+}
+
 t_stack	*ft_stklast(t_stack *stk)
 {
 	if (stk)

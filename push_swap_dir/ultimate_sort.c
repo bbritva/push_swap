@@ -10,19 +10,17 @@ int		check_pos(t_stack *curr, int num, int min)
 	return (0);
 }
 
-int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
+int		get_str_steps(t_all *all, int num)
 {
 	int		result;
-	int		min;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
 
 	result = 0;
-	min = ft_stkmin(stk_a)->num;
-	tmp_a = *stk_a;
-	tmp_b = *stk_b;
+	tmp_a = *(all->stk_a);
+	tmp_b = *(all->stk_b);
 	while ((tmp_b && tmp_b->num != num) && (tmp_a &&
-		!check_pos(tmp_a, num, min)))
+		!check_pos(tmp_a, num, all->min)))
 	{
 		result++;
 		tmp_a = tmp_a->next;
@@ -30,7 +28,7 @@ int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (tmp_a && !check_pos(tmp_a, num, min))
+		while (tmp_a && !check_pos(tmp_a, num, all->min))
 		{
 			result++;
 			tmp_a = tmp_a->next;
@@ -47,19 +45,17 @@ int		get_str_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	return(result);
 }
 
-int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
+int		get_rev_steps(t_all *all, int num)
 {
 	int		result;
-	int		min;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
 
 	result = 0;
-	min = ft_stkmin(stk_a)->num;
-	tmp_a = *stk_a;
-	tmp_b = *stk_b;
+	tmp_a = *(all->stk_a);
+	tmp_b = *(all->stk_b);
 	while ((tmp_b && tmp_b->num != num) && (tmp_a &&
-		!check_pos(tmp_a, num, min)))
+		!check_pos(tmp_a, num,  all->min)))
 	{
 		result++;
 		if (tmp_a->prev)
@@ -73,7 +69,7 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	}
 	if (tmp_b && tmp_b->num == num)
 	{
-		while (tmp_a && !check_pos(tmp_a, num, min))
+		while (tmp_a && !check_pos(tmp_a, num,  all->min))
 		{
 			result++;
 			if (tmp_a->prev)
@@ -96,49 +92,49 @@ int		get_rev_steps(t_stack **stk_a, t_stack **stk_b, int num)
 	return(result);
 }
 
-int		get_diff_steps(t_stack **stk_a, t_stack **stk_b, int num)
+int		get_diff_steps(t_all *all, int num)
 {
 	int		result;
-	int		min;
 	int		steps;
 	t_stack	*tmp_a;
 	t_stack	*tmp_b;
 
 	result = 0;
 	steps = 0;
-	min = ft_stkmin(stk_a)->num;
-	tmp_b = *stk_b;
+	tmp_b = *(all->stk_b);
 	while (tmp_b && tmp_b->num != num)
 	{
 		steps++;
 		tmp_b = tmp_b->next;
 	}
-	steps = (steps > (ft_stksize(stk_b) - steps)) * (ft_stksize(stk_b) - 
-			steps) + (steps <= (ft_stksize(stk_b) - steps)) * steps;
-	tmp_a = *stk_a;
-	while (tmp_a && !check_pos(tmp_a, num, min))
+	steps = (steps > (ft_stksize(all->stk_b) - steps)) * (ft_stksize(all->stk_b) - 
+			steps) + (steps <= (ft_stksize(all->stk_b) - steps)) * steps;
+	tmp_a = *(all->stk_a);
+	while (tmp_a && !check_pos(tmp_a, num, all->min))
 	{
 		result++;
 		tmp_a = tmp_a->next;
 	}
-	result = (result > (ft_stksize(stk_a) - result)) * (ft_stksize(stk_a) -
-		result) + (result <= (ft_stksize(stk_a) - result)) * result;
+	result = (result > (ft_stksize(all->stk_a) - result)) * (ft_stksize(all->stk_a) -
+		result) + (result <= (ft_stksize(all->stk_a) - result)) * result;
 	return(steps + result);
 }
 
-void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
+void	get_each_steps(t_all *all)
 {
 	t_stack *tmp;
 	int 	straight_steps;
 	int 	reverse_steps;
 	int 	diff_steps;
 
-	tmp = *stk_b;
+	tmp = *(all->stk_b);
+	all->min = ft_stkmin(all->stk_a)->num;
+	all->max = ft_stkmax(all->stk_a)->num;
 	while(tmp)
 	{
-		straight_steps = get_str_steps(stk_a, stk_b, tmp->num);
-		reverse_steps = get_rev_steps(stk_a, stk_b, tmp->num);
-		diff_steps = get_diff_steps(stk_a, stk_b, tmp->num);
+		straight_steps = get_str_steps(all, tmp->num);
+		reverse_steps = get_rev_steps(all, tmp->num);
+		diff_steps = get_diff_steps(all, tmp->num);
 		if (straight_steps <= reverse_steps)
 		{
 			if (straight_steps <= diff_steps)
@@ -168,28 +164,28 @@ void	get_each_steps(t_stack **stk_a, t_stack **stk_b)
 		tmp = tmp->next;
 	}
 }
-char	*ultimate_sort(t_stack **stk_a, t_stack **stk_b)
+char	*ultimate_sort(t_all *all)
 {
 	char	*ops_line;
 	char	*five_sort_line;
 
-	if (is_stk_sorted(stk_a))
+	if (is_stk_sorted(all->stk_a))
 		return ("");
 	ops_line = NULL;
-	while (ft_stksize(stk_a) > 5)
+	while (ft_stksize(all->stk_a) > 5)
 	{
-		push(stk_b, stk_a);
+		push(all->stk_b, all->stk_a);
 		ops_line = gnl_strjoin(ops_line, PUSH_B);
 	}
-	five_sort_line = five_sort(stk_a, stk_b);
+	five_sort_line = five_sort(all);
 	ops_line = gnl_strjoin(ops_line, five_sort_line);
 	free(five_sort_line);
-	while(*stk_b)
+	while(*(all->stk_b))
 	{
-		get_each_steps(stk_a, stk_b);
-		ops_line = do_min_steps(stk_a, stk_b, ops_line);
+		get_each_steps(all);
+		ops_line = do_min_steps(all, ops_line);
 	}
-	ops_line = gnl_strjoin(ops_line, final_rotate(stk_a));
+	ops_line = gnl_strjoin(ops_line, final_rotate(all->stk_a));
 //	ft_putstr("Stack A:\n");
 //	ft_stkshow(stk_a);
 //	ft_putstr("Stack B:\n");
