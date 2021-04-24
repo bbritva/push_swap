@@ -45,20 +45,6 @@ void	ft_stkclear(t_stack **stk)
 	free(stk);
 }
 
-void	ft_stkshow(t_stack **stk)
-{
-	t_stack *tmp;
-	
-	if (!stk)
-		return ;
-	tmp = *stk;
-	while (tmp)
-	{
-		printf("%5d, %d\n", tmp->num, tmp->steps);
-		tmp = tmp->next;
-	}
-}
-
 t_stack	*ft_stkmin(t_stack **stk)
 {
 	t_stack *min;
