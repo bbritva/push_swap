@@ -173,10 +173,17 @@ char	*ultimate_sort(t_all *all)
 	if (is_stk_sorted(all->stk_a))
 		return ("");
 	ops_line = NULL;
+	all->max = ft_stkmax(all->stk_a)->num;
+	all->min = ft_stkmin(all->stk_a)->num;
 	while (ft_stksize(all->stk_a) > 5)
 	{
 		push(all->stk_b, all->stk_a);
 		ops_line = gnl_strjoin(ops_line, PUSH_B);
+		if ((*all->stk_b)->num > (all->max + all->min) / 2)
+		{
+			rotate(all->stk_b);
+			ops_line = gnl_strjoin(ops_line, ROT_B);
+		}
 	}
 	five_sort_line = five_sort(all);
 	ops_line = gnl_strjoin(ops_line, five_sort_line);
