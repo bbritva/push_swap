@@ -59,6 +59,7 @@ int	main(int argc, char *argv[])
 		else
 		{
 			do_sort(stk_a, stk_b);
+			ft_stkshow(stk_a);
 			if (is_stk_sorted(stk_a) && !(*stk_b))
 				ft_putstr("OK\n");
 			else
