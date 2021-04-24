@@ -38,6 +38,7 @@ typedef struct		s_stack
 {
 	int 			num;
 	int 			steps;
+	int 			mid_dist;
 	char 			flag;
 	struct s_stack	*prev;
 	struct s_stack	*next;
@@ -50,6 +51,7 @@ typedef struct		s_all
 	t_stack			**stk_b;
 	int 			min;
 	int 			max;
+	int 			mid;
 }					t_all;
 
 void				ft_stkadd_back(t_stack **stk, t_stack *new);
@@ -83,6 +85,7 @@ char			 	*dif_prepare(t_all *all, int num);
 char 				*final_rotate(t_stack **stk);
 t_stack				*ft_stkmin(t_stack **stk);
 t_stack				*ft_stkmax(t_stack **stk);
+int 				ft_stkmid(t_stack **stk);
 
 
 
