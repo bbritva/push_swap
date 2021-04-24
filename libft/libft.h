@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -45,7 +45,7 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 char				*ft_strnstr(const char *haystack, const char *needle,
-					size_t len);
+						size_t len);
 void				*ft_calloc(size_t count, size_t size);
 char				*ft_strdup(const char *s1);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
@@ -67,6 +67,6 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-					void (*del)(void *));
+						void (*del)(void *));
 
 #endif

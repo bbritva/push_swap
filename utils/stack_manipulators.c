@@ -1,10 +1,9 @@
-
 #include "../includes/push_swap.h"
 
-int 	swap(t_stack **stk)
+int	swap(t_stack **stk)
 {
 	t_stack	*tmp;
-	
+
 	if (stk && *stk)
 	{
 		tmp = (*stk)->next;
@@ -15,13 +14,13 @@ int 	swap(t_stack **stk)
 		tmp->prev = NULL;
 		*stk = tmp;
 	}
-	return (3);	
+	return (3);
 }
 
-int 	push(t_stack **stk_a, t_stack **stk_b)
+int	push(t_stack **stk_a, t_stack **stk_b)
 {
-	t_stack *tmp;
-	
+	t_stack	*tmp;
+
 	if (*stk_b)
 	{
 		tmp = *stk_b;
@@ -31,13 +30,13 @@ int 	push(t_stack **stk_a, t_stack **stk_b)
 		tmp->next = NULL;
 		ft_stkadd_front(stk_a, tmp);
 	}
-	return (3);	
+	return (3);
 }
 
-int 	rotate(t_stack **stk)
+int	rotate(t_stack **stk)
 {
 	t_stack	*tmp;
-	
+
 	if (stk && *stk)
 	{
 		tmp = ft_stklast(*stk);
@@ -47,10 +46,10 @@ int 	rotate(t_stack **stk)
 		(*stk)->prev = NULL;
 		tmp->next->next = NULL;
 	}
-	return (3);	
+	return (3);
 }
 
-int 	rev_rotate(t_stack **stk)
+int	rev_rotate(t_stack **stk)
 {
 	t_stack	*tmp;
 
@@ -65,5 +64,3 @@ int 	rev_rotate(t_stack **stk)
 	}
 	return (4);
 }
-
-

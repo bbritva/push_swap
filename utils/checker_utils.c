@@ -5,17 +5,14 @@ int 	is_int(char *str)
 	int			i;
 	long long	num;
 	int			sign;
-	
+
 	num = 0;
 	i = 0;
 	sign = 1;
 	if (!str || !ft_strchr("-1234567890", str[i]))
 		return (0);
-	if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
+	sign = -1 * (str[i] == '-') + 1 * (str[i] != '-');
+	i = 1 * (str[i] == '-');
 	while (str[i] && num <= 2147483647)
 	{
 		if (ft_isdigit(str[i]))
@@ -32,8 +29,8 @@ int 	is_int(char *str)
 
 int 	is_stk_sorted(t_stack **stk)
 {
-	t_stack *tmp;
-	
+	t_stack	*tmp;
+
 	if (stk)
 	{
 		tmp = *stk;

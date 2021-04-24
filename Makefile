@@ -10,7 +10,8 @@ PS_PATH		=	push_swap_dir/
 PS_SRCS		=	push_swap.c sort_stack.c ultimate_sort.c do_steps.c do_steps_utils.c \
 				final_rotate.c
 UTL_PATH	=	utils/
-UTL_SRCS	=	checker_utils.c stack_utils.c stack_manipulators.c do_sort.c
+UTL_SRCS	=	checker_utils.c stack_base_utils.c stack_manipulators.c do_sort.c \
+				stack_ext_utils.c stack_mid_calc.c  
 GNL_PATH	=	gnl_dir/
 GNL_SRCS	=	get_next_line.c get_next_line_utils.c
 SRCS_CHK	=	$(addprefix $(CHECK_PATH), $(CHK_SRCS)) \

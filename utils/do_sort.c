@@ -1,9 +1,8 @@
-
 #include "../includes/push_swap.h"
 
 void 	do_stack_ops(t_stack **stk_a, t_stack **stk_b, char *ops_line, int i)
 {
-	while(ops_line && ops_line[i])
+	while (ops_line && ops_line[i])
 	{
 		if (ft_strnstr(&ops_line[i], "sa\n", 3))
 			i += swap(stk_a);
@@ -30,13 +29,12 @@ void 	do_stack_ops(t_stack **stk_a, t_stack **stk_b, char *ops_line, int i)
 	}
 }
 
-char 	*get_ops_line()
+char	*get_ops_line(void)
 {
-	char *line;
-	char *ops_line;
+	char	*line;
+	char	*ops_line;
 	int		i;
 
-	i = 1;
 	ops_line = NULL;
 	i = get_next_line(0, &line);
 	while (i)
@@ -54,8 +52,8 @@ char 	*get_ops_line()
 int 	do_sort(t_stack **stk_a, t_stack **stk_b)
 {
 	char	*ops_line;
-	int 	i;
-	
+	int		i;
+
 	i = 0;
 	ops_line = get_ops_line();
 	do_stack_ops(stk_a, stk_b, ops_line, i);
