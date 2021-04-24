@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bbritva <bbritva@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 18:59:31 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/17 18:48:24 by bbritva          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/push_swap.h"
 
 void	ft_putstr(char *str)
@@ -17,15 +5,15 @@ void	ft_putstr(char *str)
 	write(1, str, ft_strlen(str));
 }
 
-int 	parse_error(t_stack **stk_a, t_stack **stk_b)
+int	parse_error(t_stack **stk_a, t_stack **stk_b)
 {
-	ft_stkclear(stk_a);	
+	ft_stkclear(stk_a);
 	ft_stkclear(stk_b);
 	ft_putstr("Error\n");
 	return (1);
 }
 
-int		parse_int(int *num, char *str)
+int	parse_int(int *num, char *str)
 {
 	if (is_int(str))
 	{
@@ -35,11 +23,11 @@ int		parse_int(int *num, char *str)
 	return (0);
 }
 
-int 	get_stack(t_stack **stk, int argc, char *argv[])
+int	get_stack(t_stack **stk, int argc, char *argv[])
 {
-	int		i;
-	int 	num;
-	
+	int	i;
+	int	num;
+
 	i = 1;
 	*stk = NULL;
 	while (i < argc)
@@ -52,11 +40,11 @@ int 	get_stack(t_stack **stk, int argc, char *argv[])
 	return (1);
 }
 
-int		main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	**stk_a;
 	t_stack	**stk_b;
-	
+
 	if (argc == 1)
 		return (0);
 	stk_a = (t_stack **)malloc(sizeof(t_stack *));
@@ -70,12 +58,7 @@ int		main(int argc, char *argv[])
 			ft_putstr("OK\n");
 		else
 		{
-			ft_stkshow(stk_a);
 			do_sort(stk_a, stk_b);
-			ft_putstr("stack A:\n");
-			ft_stkshow(stk_a);
-			ft_putstr("stack B:\n");
-			ft_stkshow(stk_b);
 			if (is_stk_sorted(stk_a) && !(*stk_b))
 				ft_putstr("OK\n");
 			else

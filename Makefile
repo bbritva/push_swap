@@ -63,6 +63,6 @@ re:			fclean all
 			@echo $@ compilled
 
 norm:
-			norminette main.c Render/*c Render/*h Parser/*c Parser/*h libft/*c libft/*h GNL/*c GNL/*h
+			norminette $(addprefix $(CHECK_PATH), $(CHK_SRCS)) $(addprefix $(GNL_PATH), $(GNL_SRCS)) $(addprefix $(UTL_PATH), $(UTL_SRCS)) $(addprefix $(PS_PATH), $(PS_SRCS))
 
 .PHONY:		all clean fclean re so bonus norm

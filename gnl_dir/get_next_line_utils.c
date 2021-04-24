@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bbritva <bbritva@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 11:42:58 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/17 20:32:25 by bbritva          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 size_t	gnl_strlen(const char *str)
@@ -28,28 +16,27 @@ size_t	gnl_strlen(const char *str)
 
 char	*gnl_strjoin(char *s1, char *s2)
 {
-	char	*result;
+	char	*res;
 	int		j;
 
 	if (!s2)
 		return (NULL);
-	result = (char *)malloc((gnl_strlen(s1) + gnl_strlen(s2) + 1) *
-		sizeof(char));
-	if (result)
+	res = (char *)malloc((gnl_strlen(s1) + gnl_strlen(s2) + 1) * sizeof(char));
+	if (res)
 	{
 		j = 0;
 		if (s1)
-			gnl_strlcpy(result, s1, gnl_strlen(s1) + 1);
+			gnl_strlcpy(res, s1, gnl_strlen(s1) + 1);
 		while (*(s2 + j))
 		{
-			result[gnl_strlen(s1) + j] = *(s2 + j);
+			res[gnl_strlen(s1) + j] = *(s2 + j);
 			j++;
 		}
-		result[gnl_strlen(s1) + j] = 0;
+		res[gnl_strlen(s1) + j] = 0;
 	}
 	if (s1)
 		free(s1);
-	return (result);
+	return (res);
 }
 
 char	*buff_trim(char *buff, size_t len)

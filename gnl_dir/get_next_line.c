@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bbritva <bbritva@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 15:50:47 by grvelva           #+#    #+#             */
-/*   Updated: 2021/04/17 20:31:09 by bbritva          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-int		check_input(int fd, char **line)
+int	check_input(int fd, char **line)
 {
 	char	test_buff[1];
 
@@ -25,9 +13,9 @@ int		check_input(int fd, char **line)
 	return (1);
 }
 
-int		has_buff_nl(char *buff)
+int	has_buff_nl(char *buff)
 {
-	int i;
+	int	i;
 
 	if (buff)
 	{
@@ -65,19 +53,24 @@ char	*getline_from_buff(char *buff)
 	return (res);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*buff = NULL;
 
 	if (!check_input(fd, line))
 		return (-1);
-	if (!(buff = init_buff(buff, fd)))
+	buff = init_buff(buff, fd);
+	if (!buff)
 		return (-1);
 	if (has_buff_nl(buff))
 	{
-		if ((*line = getline_from_buff(buff)))
-			if ((buff = buff_trim(buff, gnl_strlen(*line) + 1)))
+		*line = getline_from_buff(buff);
+		if (*line)
+		{
+			buff = buff_trim(buff, gnl_strlen(*line) + 1);
+			if (buff)
 				return (1);
+		}
 		free(buff);
 		return (-1);
 	}
@@ -89,15 +82,21 @@ int		get_next_line(int fd, char **line)
 char	*init_buff(char *buff, int fd)
 {
 	char	*buff1;
-	int		ret;
+	ssize_t	ret;
 
 	buff1 = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buff1)
 	{
-		while (!has_buff_nl(buff) && ((ret = read(fd, buff1, BUFFER_SIZE)) > 0))
+		while (!has_buff_nl(buff))
 		{
-			buff1[ret] = 0;
-			buff = gnl_strjoin(buff, buff1);
+			ret = read(fd, buff1, BUFFER_SIZE);
+			if (ret > 0)
+			{
+				buff1[ret] = 0;
+				buff = gnl_strjoin(buff, buff1);
+			}
+			else
+				break ;
 		}
 		if (!buff)
 			buff = gnl_strjoin(buff, "\0");
