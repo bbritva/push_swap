@@ -14,7 +14,6 @@ int 	swap(t_stack **stk)
 		tmp->next = *stk;
 		tmp->prev = NULL;
 		*stk = tmp;
-		// ft_putstr("swap done\n");
 	}
 	return (3);	
 }
@@ -31,10 +30,7 @@ int 	push(t_stack **stk_a, t_stack **stk_b)
 			(*stk_b)->prev = NULL;
 		tmp->next = NULL;
 		ft_stkadd_front(stk_a, tmp);
-		// ft_putstr("push done\n");
 	}
-	// else
-	// 	ft_putstr("nothing to push\n");
 	return (3);	
 }
 
@@ -50,17 +46,13 @@ int 	rotate(t_stack **stk)
 		*stk = (*stk)->next;
 		(*stk)->prev = NULL;
 		tmp->next->next = NULL;
-		// ft_putstr("rotate done\n");
 	}
-	// else
-	// 	ft_putstr("nothing to rotate\n");
 	return (3);	
 }
 
 int 	rev_rotate(t_stack **stk)
 {
 	t_stack	*tmp;
-//	t_stack	*new_last;
 
 	if (stk && *stk)
 	{
@@ -70,19 +62,7 @@ int 	rev_rotate(t_stack **stk)
 		*stk = (*stk)->prev;
 		(*stk)->prev->next = NULL;
 		(*stk)->prev = NULL;
-		
-		
-//		new_last = ft_stklast(*stk)->prev;
-//		tmp = *stk;
-//		*stk = ft_stklast(tmp);
-//		(*stk)->next = tmp;
-//		tmp->prev = (*stk)->next;
-//		(*stk)->prev = NULL;
-//		new_last->next = NULL;
-		// ft_putstr("rev_rotate done\n");
 	}
-	// else
-	// 	ft_putstr("nothing to rev_rotate\n");
 	return (4);
 }
 

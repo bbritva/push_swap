@@ -56,9 +56,7 @@ int 	do_sort(t_stack **stk_a, t_stack **stk_b)
 	char	*ops_line;
 	int 	i;
 	
-	i = 0;	
-	(void)stk_b;
-	(void)stk_a;
+	i = 0;
 	ops_line = get_ops_line();
 	do_stack_ops(stk_a, stk_b, ops_line, i);
 	free(ops_line);

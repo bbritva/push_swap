@@ -21,38 +21,25 @@ char 		*prepare_stacks(t_all *all, t_stack *el)
 {
 	char	*ol;
 
-//	ft_putstr("Stack A:\n");
-//	ft_stkshow(stk_a);
-//	ft_putstr("Stack B:\n");
-//	ft_stkshow(stk_b);
 	if (el->flag & STRWAY)
 		ol = str_prepare(all, el->num);
 	if (el->flag & REVWAY)
 		ol = rev_prepare(all, el->num);
 	if (el->flag & DIFWAY)
 		ol = dif_prepare(all, el->num);
-//	ft_putstr("Stack A:\n");
-//	ft_stkshow(stk_a);
-//	ft_putstr("Stack B:\n");
-//	ft_stkshow(stk_b);
 	return (ol);
 }
 
 char 		*do_min_steps(t_all *all, char *ol)
 {
 	t_stack *min_steps_el;
+	char 	*ops_line;
 
 	min_steps_el = get_min_steps_el(all->stk_b);
-	ol = gnl_strjoin(ol, prepare_stacks(all, min_steps_el));
+	ops_line = prepare_stacks(all, min_steps_el);
+	ol = gnl_strjoin(ol, ops_line);
+	free(ops_line);
 	ol = gnl_strjoin(ol, PUSH_A);
-//	ft_putstr("Stack A:\n");
-//	ft_stkshow(stk_a);
-//	ft_putstr("Stack B:\n");
-//	ft_stkshow(stk_b);
 	push(all->stk_a, all->stk_b);
-//	ft_putstr("Stack A:\n");
-//	ft_stkshow(stk_a);
-//	ft_putstr("Stack B:\n");
-//	ft_stkshow(stk_b);
 	return (ol);
 }

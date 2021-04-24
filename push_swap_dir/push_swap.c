@@ -20,7 +20,7 @@ void	ft_putstr(char *str)
 		ft_putstr("NULL, wtf?\n");
 }
 
-int 	parse_error(t_all *all)
+int 	parse_error_exit(t_all *all)
 {
 	ft_stkclear(all->stk_a);	
 	ft_stkclear(all->stk_b);
@@ -73,10 +73,10 @@ int		main(int argc, char *argv[])
 		all->stk_a = stk_a;
 		all->stk_b = stk_b;
 		*stk_b = NULL;
-		if (!get_stack(stk_a, argc, argv) && parse_error(all))
+		if (!get_stack(stk_a, argc, argv) && parse_error_exit(all))
 			return (0);
 		if (is_stk_sorted(stk_a) && !(*stk_b))
-			ft_putstr("Well done!(=\n");
+			return (0);
 		else
 		{
 			ops_line = sort_stack(all);

@@ -8,7 +8,8 @@ void	ft_stkadd_back(t_stack **stk, t_stack *new)
 	tmp = ft_stklast(*stk);
 	if (tmp)
 	{
-		new->prev = tmp;
+		if (new)
+			new->prev = tmp;
 		tmp->next = new;
 	}
 	else
@@ -43,31 +44,6 @@ void	ft_stkclear(t_stack **stk)
 	*stk = NULL;
 	free(stk);
 }
-
-
-//void	ft_stkdelone(t_stack *stk)
-//{
-//	if (stk)
-//	{
-//		stk->next = NULL;
-//		free(stk);
-//		stk = NULL;
-//	}
-//}
-//
-//void	ft_stkiter(t_stack **stk, void (*f)(void *))
-//{
-//	t_stack *tmp;
-//	
-//	if (!stk || !f)
-//		return ;
-//	tmp = *stk;
-//	while (tmp)
-//	{
-//		f(&tmp->num);
-//		tmp = tmp->next;
-//	}
-//}
 
 void	ft_stkshow(t_stack **stk)
 {

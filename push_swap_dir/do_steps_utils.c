@@ -29,9 +29,9 @@ char 	*str_prepare(t_all *all, int num)
 			rotate(all->stk_b);
 		}
 	}
-	if (ol)
-		return(ol);
-	return ("");
+	if (!ol)
+		ol = gnl_strjoin(ol, "");
+	return (ol);
 }
 
 char 	*rev_prepare(t_all *all, int num)
@@ -58,9 +58,10 @@ char 	*rev_prepare(t_all *all, int num)
 			ol = gnl_strjoin(ol, RROT_B);
 			rev_rotate(all->stk_b);
 		}
-	if (ol)
-		return(ol);
-	return ("");}
+	if (!ol)
+		ol = gnl_strjoin(ol, "");
+	return (ol);
+}
 
 char 	*dif_prepare(t_all *all, int num)
 {
@@ -107,7 +108,7 @@ char 	*dif_prepare(t_all *all, int num)
 			rev_rotate(all->stk_a);
 			ol = gnl_strjoin(ol, RROT_A);
 		}
-	if (ol)
-		return(ol);
-	return ("");
+	if (!ol)
+		ol = gnl_strjoin(ol, "");
+	return (ol);
 }

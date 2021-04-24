@@ -82,6 +82,7 @@ char	*four_sort(t_all *all)
 char	*five_sort(t_all *all)
 {
 	char	*ops_line;
+	char	*four_line;
 	int		r_steps;
 
 	ops_line = NULL;
@@ -105,7 +106,9 @@ char	*five_sort(t_all *all)
 	}
 	push (all->stk_b, all->stk_a);
 	ops_line = gnl_strjoin(ops_line, PUSH_B);
-	ops_line = gnl_strjoin(ops_line, four_sort(all));
+	four_line = four_sort(all);
+	ops_line = gnl_strjoin(ops_line, four_line);
+	free(four_line);
 	push(all->stk_a, all->stk_b);
 	ops_line = gnl_strjoin(ops_line, PUSH_A);
 	return (ops_line);

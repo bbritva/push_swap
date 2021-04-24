@@ -169,6 +169,7 @@ char	*ultimate_sort(t_all *all)
 {
 	char	*ops_line;
 	char	*five_sort_line;
+	char	*final_rot_line;
 
 	if (is_stk_sorted(all->stk_a))
 		return ("");
@@ -192,10 +193,8 @@ char	*ultimate_sort(t_all *all)
 		get_each_steps(all);
 		ops_line = do_min_steps(all, ops_line);
 	}
-	ops_line = gnl_strjoin(ops_line, final_rotate(all->stk_a));
-//	ft_putstr("Stack A:\n");
-//	ft_stkshow(stk_a);
-//	ft_putstr("Stack B:\n");
-//	ft_stkshow(stk_b);
+	final_rot_line = final_rotate(all->stk_a);
+	ops_line = gnl_strjoin(ops_line, final_rot_line);
+	free(final_rot_line);
 	return (ops_line);
 }
