@@ -14,7 +14,7 @@
 
 static size_t	ft_calcsize(char *s, char c)
 {
-	size_t result;
+	size_t	result;
 
 	result = 1;
 	if (*s == 0)
@@ -30,7 +30,7 @@ static size_t	ft_calcsize(char *s, char c)
 
 static size_t	ft_wrdlen(char *s, char c)
 {
-	size_t result;
+	size_t	result;
 
 	result = 0;
 	while (*(s + result) != c && *(s + result))
@@ -38,17 +38,17 @@ static size_t	ft_wrdlen(char *s, char c)
 	return (++result);
 }
 
-static void		ft_freeresult(char **res, size_t count)
+static void	ft_freeresult(char **res, size_t count)
 {
 	while (count > 0)
 		free(res[count--]);
 	free(res);
 }
 
-static void		ft_fillarr(char **result, char *str, size_t size, char c)
+static void	ft_fillarr(char **result, char *str, size_t size, char c)
 {
-	size_t i;
-	size_t wrd_len;
+	size_t	i;
+	size_t	wrd_len;
 
 	i = 0;
 	while (i < size)
@@ -73,7 +73,7 @@ static void		ft_fillarr(char **result, char *str, size_t size, char c)
 	result[i] = 0;
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	*str;
 	size_t	res_size;

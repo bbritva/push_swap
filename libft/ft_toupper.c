@@ -12,7 +12,7 @@
 
 int	ft_toupper(int c)
 {
-	unsigned char chr;
+	unsigned char	chr;
 
 	if (c > 255)
 		return (c);

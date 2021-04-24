@@ -14,7 +14,7 @@
 
 static int	ft_intlen(int n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (n == -2147483648)
@@ -79,7 +79,7 @@ static void	ft_putneg(char *result, int n, int size)
 	}
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*result;
 	int		size;
