@@ -7,8 +7,8 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 CHECK_PATH	=	checker_dir/
 CHK_SRCS	=	checker.c
 PS_PATH		=	push_swap_dir/
-PS_SRCS		=	push_swap.c sort_stack.c ultimate_sort.c do_steps.c do_steps_utils.c \
-				final_rotate.c
+PS_SRCS		=	push_swap.c sort_stack.c ultimate_sort.c do_steps.c prepare_stacks.c \
+				final_rotate.c prepare_stacks_utils.c
 UTL_PATH	=	utils/
 UTL_SRCS	=	checker_utils.c stack_base_utils.c stack_manipulators.c do_sort.c \
 				stack_ext_utils.c stack_mid_calc.c  
