@@ -20,16 +20,16 @@ void	ft_putstr(char *str)
 		ft_putstr("NULL, wtf?\n");
 }
 
-int 	parse_error_exit(t_all *all)
+int	parse_error_exit(t_all *all)
 {
-	ft_stkclear(all->stk_a);	
+	ft_stkclear(all->stk_a);
 	ft_stkclear(all->stk_b);
 	free(all);
 	ft_putstr("Error\n");
 	return (1);
 }
 
-int		parse_int(int *num, char *str)
+int	parse_int(int *num, char *str)
 {
 	if (is_int(str))
 	{
@@ -39,11 +39,11 @@ int		parse_int(int *num, char *str)
 	return (0);
 }
 
-int 	get_stack(t_stack **stk, int argc, char *argv[])
+int	get_stack(t_stack **stk, int argc, char *argv[])
 {
-	int		i;
-	int 	num;
-	
+	int	i;
+	int	num;
+
 	i = 1;
 	*stk = NULL;
 	while (i < argc)
@@ -56,13 +56,13 @@ int 	get_stack(t_stack **stk, int argc, char *argv[])
 	return (1);
 }
 
-int		main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	**stk_a;
 	t_stack	**stk_b;
 	t_all	*all;
-	char 	*ops_line;
-	
+	char	*ops_line;
+
 	if (argc == 1)
 		return (0);
 	stk_a = (t_stack **)malloc(sizeof(t_stack *));
@@ -83,6 +83,4 @@ int		main(int argc, char *argv[])
 			ft_putstr(ops_line);
 		}
 	}
-	else
-		ft_putstr("Memory allocate error\n");
 }
