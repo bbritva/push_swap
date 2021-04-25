@@ -65,6 +65,6 @@ re:			fclean all
 			@echo $@ compilled
 
 norm:
-			norminette $(addprefix $(CHECK_PATH), $(CHK_SRCS)) $(addprefix $(GNL_PATH), $(GNL_SRCS)) $(addprefix $(UTL_PATH), $(UTL_SRCS)) $(addprefix $(PS_PATH), $(PS_SRCS))
+			norminette $(CHECK_PATH) $(GNL_PATH) $(UTL_PATH) $(PS_PATH) $(LIB_DIR) ./includes
 
 .PHONY:		all clean fclean re so bonus norm
