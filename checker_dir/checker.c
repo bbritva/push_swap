@@ -58,7 +58,8 @@ int	main(int argc, char *argv[])
 			ft_putstr("OK\n");
 		else
 		{
-			do_sort(stk_a, stk_b);
+			if (!do_sort(stk_a, stk_b) && parse_error(stk_a, stk_b))
+				return (0);
 			if (is_stk_sorted(stk_a) && !(*stk_b))
 				ft_putstr("OK\n");
 			else

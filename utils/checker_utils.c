@@ -43,3 +43,36 @@ int 	is_stk_sorted(t_stack **stk)
 	}
 	return (1);
 }
+
+int has_double(t_stack **stk, int num)
+{
+	t_stack *tmp;
+	if (stk && *stk)
+	{
+		tmp = *stk;
+		while (tmp)
+		{
+			if (tmp->num == num)
+				return (1);
+			tmp = tmp->next;
+		}
+	}
+	return (0);
+}
+
+int check_line(char *line)
+{
+	if (ft_strnstr(line, "sa", 3) || ft_strnstr(line, "sb", 3))
+		return (1);
+	if (ft_strnstr(line, "ss", 3) || ft_strnstr(line, "pa", 3))
+		return (1);
+	if (ft_strnstr(line, "pb", 3) || ft_strnstr(line, "ra", 3))
+		return (1);
+	if (ft_strnstr(line, "rb", 3) || ft_strnstr(line, "rr", 3))
+		return (1);
+	if (ft_strnstr(line, "rra", 4) || ft_strnstr(line, "rrb", 4))
+		return (1);
+	if (ft_strnstr(line, "rrr", 4))
+		return (1);
+	return (0);
+}

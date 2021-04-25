@@ -29,24 +29,28 @@ void 	do_stack_ops(t_stack **stk_a, t_stack **stk_b, char *ops_line, int i)
 	}
 }
 
-char	*get_ops_line(void)
+int get_ops_line(char **ops_line)
 {
 	char	*line;
-	char	*ops_line;
 	int		i;
 
-	ops_line = NULL;
+	*ops_line = NULL;
 	i = get_next_line(0, &line);
-	while (i)
+	while (i && check_line(line))
 	{
-		ops_line = gnl_strjoin(ops_line, line);
-		ops_line = gnl_strjoin(ops_line, "\n");
+		*ops_line = gnl_strjoin(*ops_line, line);
+		*ops_line = gnl_strjoin(*ops_line, "\n");
 		free(line);
 		i = get_next_line(0, &line);
 	}
-	ops_line = gnl_strjoin(ops_line, line);
+	if (!check_line(line) && i)
+	{
+		free(line);
+		return (0);
+	}
+	*ops_line = gnl_strjoin(*ops_line, line);
 	free(line);
-	return (ops_line);
+	return (1);
 }
 
 int 	do_sort(t_stack **stk_a, t_stack **stk_b)
@@ -55,8 +59,15 @@ int 	do_sort(t_stack **stk_a, t_stack **stk_b)
 	int		i;
 
 	i = 0;
-	ops_line = get_ops_line();
-	do_stack_ops(stk_a, stk_b, ops_line, i);
-	free(ops_line);
-	return (1);
+	ops_line = NULL;
+	if (get_ops_line(&ops_line))
+	{
+		do_stack_ops(stk_a, stk_b, ops_line, i);
+		i = 1;
+	}
+	else
+		i = 0;
+	if(ops_line)
+		free(ops_line);
+	return (i);
 }

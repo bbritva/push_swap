@@ -5,7 +5,7 @@ CCF			=	@gcc $(CFLAGS)
 RM			=	@rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 CHECK_PATH	=	checker_dir/
-CHK_SRCS	=	checker.c checker_utils.c
+CHK_SRCS	=	checker.c
 PS_PATH		=	push_swap_dir/
 PS_SRCS		=	push_swap.c sort_stack.c ultimate_sort.c do_steps.c prepare_stacks.c \
 				final_rotate.c prepare_stacks_utils.c minimal_sort.c step_counter.c \
