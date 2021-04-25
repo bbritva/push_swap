@@ -67,6 +67,8 @@ void				do_stack_ops(t_stack **stk_a, t_stack **stk_b,
 						char *ops_line, int i);
 char				*ultimate_sort(t_all *all);
 void				get_each_steps(t_all *all);
+int					get_str_steps(t_all *all, int num);
+int					get_rev_steps(t_all *all, int num);
 char				*do_min_steps(t_all *all, char *ol);
 int					check_pos(t_stack *curr, int num, int min, int max);
 char				*str_prepare(t_all *all, int num);

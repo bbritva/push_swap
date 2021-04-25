@@ -8,7 +8,8 @@ CHECK_PATH	=	checker_dir/
 CHK_SRCS	=	checker.c
 PS_PATH		=	push_swap_dir/
 PS_SRCS		=	push_swap.c sort_stack.c ultimate_sort.c do_steps.c prepare_stacks.c \
-				final_rotate.c prepare_stacks_utils.c minimal_sort.c
+				final_rotate.c prepare_stacks_utils.c minimal_sort.c step_counter.c \
+				step_counter_utils.c
 UTL_PATH	=	utils/
 UTL_SRCS	=	checker_utils.c stack_base_utils.c stack_manipulators.c do_sort.c \
 				stack_ext_utils.c stack_mid_calc.c  
