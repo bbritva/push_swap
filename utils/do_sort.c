@@ -29,7 +29,7 @@ void 	do_stack_ops(t_stack **stk_a, t_stack **stk_b, char *ops_line, int i)
 	}
 }
 
-int get_ops_line(char **ops_line)
+int	get_ops_line(char **ops_line)
 {
 	char	*line;
 	int		i;
@@ -67,7 +67,7 @@ int 	do_sort(t_stack **stk_a, t_stack **stk_b)
 	}
 	else
 		i = 0;
-	if(ops_line)
+	if (ops_line)
 		free(ops_line);
 	return (i);
 }

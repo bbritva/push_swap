@@ -54,8 +54,6 @@ int	main(int argc, char *argv[])
 		*stk_b = NULL;
 		if (!get_stack(stk_a, argc, argv) && parse_error(stk_a, stk_b))
 			return (0);
-		if (is_stk_sorted(stk_a) && !(*stk_b))
-			ft_putstr("OK\n");
 		else
 		{
 			if (!do_sort(stk_a, stk_b) && parse_error(stk_a, stk_b))

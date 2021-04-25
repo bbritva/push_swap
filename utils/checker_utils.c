@@ -44,9 +44,10 @@ int 	is_stk_sorted(t_stack **stk)
 	return (1);
 }
 
-int has_double(t_stack **stk, int num)
+int	has_double(t_stack **stk, int num)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
+
 	if (stk && *stk)
 	{
 		tmp = *stk;
@@ -60,7 +61,7 @@ int has_double(t_stack **stk, int num)
 	return (0);
 }
 
-int check_line(char *line)
+int	check_line(char *line)
 {
 	if (ft_strnstr(line, "sa", 3) || ft_strnstr(line, "sb", 3))
 		return (1);
