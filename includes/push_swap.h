@@ -54,6 +54,7 @@ int					ft_stksize(t_stack **stk);
 t_stack				*ft_stkmin(t_stack **stk);
 int					is_int(char *str);
 int					is_stk_sorted(t_stack **stk);
+int					has_double(t_stack **stk, int num);
 int					do_sort(t_stack **stk_a, t_stack **stk_b);
 int					swap(t_stack **stk);
 int					push(t_stack **stk_a, t_stack **stk_b);

@@ -32,7 +32,7 @@ int	get_stack(t_stack **stk, int argc, char *argv[])
 	*stk = NULL;
 	while (i < argc)
 	{
-		if (parse_int(&num, argv[i++]))
+		if (parse_int(&num, argv[i++]) && !has_double(stk, num))
 			ft_stkadd_back(stk, ft_stknew(num));
 		else
 			return (0);
