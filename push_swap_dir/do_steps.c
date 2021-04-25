@@ -1,11 +1,10 @@
-
 #include "../includes/push_swap.h"
 
-t_stack		*get_min_steps_el(t_stack **stk)
+t_stack	*get_min_steps_el(t_stack **stk)
 {
-	t_stack *min_steps_el;
-	t_stack *tmp;
-	
+	t_stack	*min_steps_el;
+	t_stack	*tmp;
+
 	min_steps_el = *stk;
 	tmp = *stk;
 	while (tmp)
@@ -17,7 +16,7 @@ t_stack		*get_min_steps_el(t_stack **stk)
 	return (min_steps_el);
 }
 
-char 		*prepare_stacks(t_all *all, t_stack *el)
+char	*prepare_stacks(t_all *all, t_stack *el)
 {
 	char	*ol;
 
@@ -30,10 +29,10 @@ char 		*prepare_stacks(t_all *all, t_stack *el)
 	return (ol);
 }
 
-char 		*do_min_steps(t_all *all, char *ol)
+char	*do_min_steps(t_all *all, char *ol)
 {
-	t_stack *min_steps_el;
-	char 	*ops_line;
+	t_stack	*min_steps_el;
+	char	*ops_line;
 
 	min_steps_el = get_min_steps_el(all->stk_b);
 	ops_line = prepare_stacks(all, min_steps_el);
