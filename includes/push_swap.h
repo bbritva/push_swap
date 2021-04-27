@@ -54,6 +54,7 @@ int					ft_stksize(t_stack **stk);
 t_stack				*ft_stkmin(t_stack **stk);
 int					is_int(char *str);
 int					is_stk_sorted(t_stack **stk);
+int					get_stack(t_stack **stk, int argc, char *argv[]);
 int					has_double(t_stack **stk, int num);
 int					do_sort(t_stack **stk_a, t_stack **stk_b);
 int					check_line(char *line);
