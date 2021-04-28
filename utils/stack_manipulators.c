@@ -9,7 +9,8 @@ int	swap(t_stack **stk)
 		tmp = (*stk)->next;
 		(*stk)->next = tmp->next;
 		(*stk)->prev = tmp;
-		(*stk)->next->prev = tmp->prev;
+		if ((*stk)->next)
+			(*stk)->next->prev = tmp->prev;
 		tmp->next = *stk;
 		tmp->prev = NULL;
 		*stk = tmp;
